@@ -1,29 +1,30 @@
-CC = c++
+CC = cc
 
-## rajouter le -I./path_to_minilibx
-INCLUDE = -I./libft 
+INCLUDE = -I./libft -I./minilibx
 
 CFLAGS = -Wall -Werror -Wextra -g3 $(INCLUDE)
 
 NAME = ./cub3d
 
-MLX_FLAGS = -L../test_fdf/minilibx-linux -lmlx -lXext -lX11 -lm
+MLX_FLAGS = -L./minilibx -lmlx -lXext -lX11 -lm
 
-SRC = 
+SRC = src/main.c
 
 GREEN = \033[32m
 RED = \033[31m
 YELLOW = \033[33m
 RESET = \033[0m
 
-build/%.o: src/%.cpp
+LIBFT_DIR = ./libft
+LIBFT_A = $(LIBFT_DIR)/libft.a
+build/%.o: src/%.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CPPFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 OBJ = $(SRC:src/%.c=build/%.o)
 
 $(NAME): $(OBJ) $(LIBFT_A)
-	@$(CC) $(CPPFLAGS) -o $@ $^ $(MLX_FLAGS)
+	@$(CC) $(CFLAGS) -o $@ $^ $(MLX_FLAGS)
 	@echo "$(GREEN)Compilation successful ! ✅$(RESET)"
 
 $(LIBFT_A):
