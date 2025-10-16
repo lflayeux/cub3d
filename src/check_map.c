@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 14:28:58 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/16 15:54:09 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/16 16:44:00 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,28 @@ void	check_map_char(char c, t_map *map)
 		map->w += 1;
 }
 
+void fill_map_line(char *line, t_map *map, int i)
+{
+	int j;
+
+	j = 0;
+	while (line[j] && line[j] != '\n' && j < map->width)
+	{
+		check_map_char(line[j], map);
+		map->map[i][j] = line[j];
+		j++;
+	}
+	while (j < map->width)
+	{
+		map->map[i][j] = ' ';
+		j++;
+	}
+}
+
 void stock_map(int fd, t_map *map)
 {
 	char *line;
 	int i;
-	int j;
 
 	(void)map;
 	line = NULL;
@@ -65,17 +82,12 @@ void stock_map(int fd, t_map *map)
 	{
 		if (is_line_empty(line) == SUCCESS)
 			return (free(line));
-		j = 0;
-		while (line[j] && j < map->width)
-		{
-			check_map_char(line[j], map);
-			map->map[i][j] = line[j];
-			j++;
-		}
+		fill_map_line(line, map, i);
 		i++;
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 }
 // Peut etre le mettre dans init et pas dans check
 void get_height_and_width(int fd, t_map *map)
@@ -84,7 +96,6 @@ void get_height_and_width(int fd, t_map *map)
 	int height;
 	char *line;
 
-	(void)map;
 	width = 0;
 	height = 0;
 	line = NULL;
@@ -102,6 +113,7 @@ void get_height_and_width(int fd, t_map *map)
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	map->height = height;
 	map->width = width;
 	printf("height => %d\nwidth => %d\n", map->height, map->width);
@@ -111,12 +123,12 @@ int init_map(t_map *map)
 	int i;
 
 	i = 0;
-	map->map = ft_calloc(map->height, sizeof(char *));
+	map->map = ft_calloc(map->height + 1, sizeof(char *));
 	if (map->map == NULL)
 		return (ERROR);
 	while (i < map->height)
 	{
-		map->map[i] = ft_calloc(map->width, sizeof(char));
+		map->map[i] = ft_calloc(map->width + 1, sizeof(char));
 		if (!map->map[i])
 		{
 			while (--i >= 0)
@@ -135,8 +147,9 @@ int init_map(t_map *map)
 
 void reset_gnl(int fd)
 {
-	while (get_next_line(fd))
-		;
+	char *line;
+	while ((line = get_next_line(fd)))
+		free(line);
 }
 
 void print_map(t_map *map)
@@ -150,10 +163,14 @@ void print_map(t_map *map)
 		j = 0;
 		while (j < map->width)
 		{
-			printf("%c", map->map[i][j]);
+			if (map->map[i][j] == ' ')
+				printf(".");
+			else
+				printf("%c", map->map[i][j]);
 			j++;
 		}
 		i++;
+		printf("\n");
 	}
 }
 int is_map_valid(t_map *map)
@@ -161,6 +178,14 @@ int is_map_valid(t_map *map)
 	if (map->error == true)
 		return (ERROR);
 	if (map->n == 0 && map->s == 0 && map->w == 0 && map->e == 0)
+		return (ERROR);
+	if (map->n == 1 && (map->s == 1 || map->w == 1 || map->e == 1))
+		return (ERROR);
+	if (map->s == 1 && (map->n == 1 || map->w == 1 || map->e == 1))
+		return (ERROR);
+	if (map->w == 1 && (map->s == 1 || map->n == 1 || map->e == 1))
+		return (ERROR);
+	if (map->e == 1 && (map->s == 1 || map->w == 1 || map->n == 1))
 		return (ERROR);
 	if (map->n > 1 || map->s > 1 || map->e > 1 || map->w > 1)
 		return (ERROR);
@@ -173,6 +198,7 @@ int is_map_valid(t_map *map)
 
 
 // }
+
 int check_map(char *file, t_map *map)
 {
 	int fd;
@@ -195,6 +221,8 @@ int check_map(char *file, t_map *map)
 	if (init_map(map) == ERROR)
 		return (ERROR);
 	stock_map(fd, map);
+	reset_gnl(fd);
+	close(fd);
 	// is_map_closed(map);
 	print_map(map);
 	// printf("map->n %d\n", map->n);
