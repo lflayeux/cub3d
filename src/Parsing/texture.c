@@ -1,14 +1,16 @@
-int istextures(char *line, int textures)
+#include "cub3d.h"
+
+
+int	is_textures(char *line, t_col_text col_text)
 {
 	//istextures doit s'assurer que la texture commence par NO, SO, EA, WE
 	// pour pouvoir remplir les textures
-	// 
 	int i = 0;
 	int y = 0;
 	char	name[3];
 
 	i = skipspace(line, i);
-	while (line[i] && line[i] != " " && y < 2)
+	while (line[i] && line[i] != ' ' && y < 2)
 	{
 		name[y] = line[i];
 		y++;
@@ -17,7 +19,7 @@ int istextures(char *line, int textures)
 	name[y] = '\0';
 	if (y == 2)
 	{
-		if (filltextures(line, name, png) == 1)
+		if (fill_textures(line, name, col_text) == 1)
 			return(printf("error textures"),1);
 		return (0);
 	}
@@ -27,7 +29,7 @@ int istextures(char *line, int textures)
 }
 
 
-int filltextures(char *line, char *name, struct png)
+int	fill_textures(char *line, char *name, t_col_text col_text)
 {
 	int i;
 	int er;
@@ -36,19 +38,19 @@ int filltextures(char *line, char *name, struct png)
 	i = 0;
 	i = skipspace(line, i);
 	if (strcmp(name, "NO")== 0)
-		er = get_texture(line, &(png->NOtext));
+		er = get_texture(line, &(col_text.NOtext));
 	if (strcmp(name, "SO")== 0)
-		er = get_texture(line, &(png->SOtext));
+		er = get_texture(line, &(col_text.SOtext));
 	if (strcmp(name, "EA")== 0)
-		er = get_texture(line, &(png->EAtext));
+		er = get_texture(line, &(col_text.EAtext));
 	if (strcmp(name, "WE")== 0)
-		er = get_texture(line, &(png->WEtext));
+		er = get_texture(line, &(col_text.WEtext));
 	else
 		return (printf("error: unknown texture identifier"),1);
 	return (er);
 }
 
-int get_texture(char *line, char **texture)
+int	get_texture(char *line, char **texture)
 {
 	int i;
 	int start;
@@ -59,11 +61,11 @@ int get_texture(char *line, char **texture)
 	y = 0;
 	i = 0;
 	i = skipspace(line, i);
-	while(line[i] && line[i] != " ")
+	while(line[i] && line[i] != ' ')
 		i++;
 	i = skipspace(line, i);
 	start = i;
-	while(line[i] && line[i] != "\n" && line[i] != '\r')
+	while(line[i] && line[i] != '\n' && line[i] != '\r')
 		i++;
 	len = i - start;
 	*texture = malloc(len + 1);
@@ -80,7 +82,7 @@ int get_texture(char *line, char **texture)
 	return (0);
 }
 
-int is_texture_ok(char *texture)
+int	is_texture_ok(char *texture)
 {
 	int fd;
 	int len;

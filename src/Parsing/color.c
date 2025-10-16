@@ -1,30 +1,32 @@
+#include "cub3d.h"
+
 int skipspace(char *line, int i)
 {
-	while(line[i] && line[i] == " ")
+	while(line[i] && line[i] == ' ')
 		i++;
 	return(i);
 }
 
-int	iscolor(char *line, struct png)
+int	is_color(char *line, t_col_text col_text)
 {
 	int i;
 
 	i = 0;
 	i = skipspace(line, i);
-	if ( line[i] == "F" || line[i] == "C")
+	if ( line[i] == 'F' || line[i] == 'C')
 	{
-		if (line[i] == "F")
+		if (line[i] == 'F')
 		{
-			if (png->Ftext != 0)
+			if (col_text.Fcolor != 0)
 				return (printf("Error double parameter for Fcolor"),1);
-			fillcolor(line, png->Fcolor, png);
+			fill_color(line, col_text.Fcolor, col_text);
 			return (0);
 		}
-		if (line[i] == "C")
+		if (line[i] == 'C')
 		{
-			if (png->Ctext != 0)
+			if (col_text.Ccolor != 0)
 				return(printf("Error double parameter for Ccolor"), 1);
-			fillcolor(line, png->Ccolor, png);
+			fill_color(line, col_text.Ccolor, col_text);
 			return (0);
 		}
 	}
@@ -33,7 +35,7 @@ int	iscolor(char *line, struct png)
 	return (1);
 }
 
-int fillcolor(char *line, int pngcolor, struct png)
+int fill_color(char *line, int color, t_col_text col_text)
 {
     int i;
     int j;
@@ -41,41 +43,41 @@ int fillcolor(char *line, int pngcolor, struct png)
 
     j = 0;
     i = 0;
-    pngcolor = 1;
-    while(line[i] && (line[i] == " " || line[i] == "C" || line[i] == "F"))
+    color = 1;
+    while(line[i] && (line[i] == ' ' || line[i] == 'C' || line[i] == 'F'))
         i++;
     while(j<3)
     {
-        i = getcolor(line, i, &temp_colors[j]);
+        i = get_color(line, i, &temp_colors[j]);
         if (i ==-1)
             return(printf("error:invalid RGB value"),1);
         j++;
     }
-    if (pngcolor == png->Fcolor)
+    if (color == col_text.Fcolor)
     {
-        png->FR = temp_colors[0];
-        png->FG = temp_colors[1];
-        png->FB = temp_colors[2];
+        col_text.FR = temp_colors[0];
+        col_text.FG = temp_colors[1];
+        col_text.FB = temp_colors[2];
     }
     else
     {
-        png->CR = temp_colors[0];
-        png->CG = temp_colors[1];
-        png->CB = temp_colors[2];
+        col_text.CR = temp_colors[0];
+        col_text.CG = temp_colors[1];
+        col_text.CB = temp_colors[2];
     }
     return(0);
 }
 
-int getcolor(char *line,int index, int *code)
+int get_color(char *line,int index, int *code)
 {
     char colorcode[4];
     int i;
 
     i = 0;
     ft_memset(colorcode, 0, 4);
-    while (line[index] && line[index] != "," && line[index] != "\n")
+    while (line[index] && line[index] != ',' && line[index] != '\n')
     {
-        if (line[index]>= '0' && line[index <= '9'])
+        if (line[index]>= '0' && line[index] <= '9')
         {
             if (i<3)
                 colorcode[i] = line[index];
@@ -84,8 +86,8 @@ int getcolor(char *line,int index, int *code)
             return (-1);
         index++;
     }
-    code = atoi((const char )colorcode);
-    if (code < 0 || code > 255)
+    *code = atoi(colorcode);
+    if (*code < 0 || *code > 255)
         return (printf("error : wrong number in the RGB"), -1);
     if (line[index] == ',')
         index++;

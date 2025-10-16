@@ -1,10 +1,4 @@
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdbool.h>
-# include <stdlib.h>
-# include <stddef.h>
-# include <math.h>
-
+#include "cub3d.h"
 //------------------------------------------
 //exemple .cub
 
@@ -102,34 +96,29 @@ int checkfilenamecub(char *map)
 	size_t place;
 
 	len = strlen(map);
-	if(len != 4)
-		return (0);
-	place = len -4;
-	if (strnstr(map+place, ".cub", 4) != NULL)
+	place = len - 4;
+	if (ft_strncmp(map+place, ".cub", 4) != 0)
 		return (1);
 	return (0);
 }
 
-int parsingcub(struct png, char *map)
+int parsingcub3d(t_params param, char *map)
 {
 	int fd;
-	int fdd;
 
 	fd = open(map,O_RDONLY);
 	if (fd == -1)
-		return (free(png), ft_printf("error opening file"), 0);
-	checkfirstelems(png, fd);
-	checkmap(png, fd);
+		return (printf("error opening file"), 1);
+	if (checkfirstelems(param.col_text, fd)!= 0)
+		return (1);
+	//checkmap(png, fd);
 
 	return (0);
 }
 
 //------
 
-
-
-
-int checkfirstelems(struct png, int fd)
+int checkfirstelems(t_col_text col_text, int fd)
 {
 	char *line;
 	int color;
@@ -141,14 +130,14 @@ int checkfirstelems(struct png, int fd)
 	while(line != 0)
 	{
 		//si color == 1 on doit s'assurer que la ligne suivante soit aussi une couleur
-		if (iscolor(line, png)== 0)
+		if (is_color(line, col_text)== 0)
 		{
 			if (textures > 0 && textures < 4)
 				return(free(line), printf("error parameter are not written correctly"), 1);
 			color++;
 		}
 		//si texture n'est pas egale a 0 ou 4, la ligne suivante doit etre une texture obligatoirement
-		else if (istextures(line, png) == 0)
+		else if (is_textures(line, col_text) == 0)
 		{
 			if (color == 1)
 				return (free(line), printf("error parameter are not written correctly"),1);
