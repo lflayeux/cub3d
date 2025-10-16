@@ -1,7 +1,22 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/15 14:29:06 by pandemonium       #+#    #+#             */
+/*   Updated: 2025/10/16 15:44:08 by pandemonium      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int main()
+#include "../includes/cub3d.h"
+
+int main(int argc, char **argv)
 {
-	printf("test");	
-
+	t_map map;
+	(void)argc;
+	if (check_map(argv[1], &map))
+		printf(ONRED "ERROR DE MAP" RESET);
+	return 0;
 }
