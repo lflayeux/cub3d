@@ -8,10 +8,12 @@ NAME = ./cub3d
 
 MLX_FLAGS = -L./minilibx -lmlx -lXext -lX11 -lm
 
-SRC = src/main.c \
-		src/Parsing/color.c \
-		src/Parsing/texture.c \
-		src/Parsing/validity_map.c \
+SRC =	src/main.c \
+		src/parsing/color.c \
+		src/parsing/texture.c \
+		src/parsing/validity_map.c \
+		src/parsing/check_map.c \
+
 
 
 GREEN = \033[32m

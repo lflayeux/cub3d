@@ -46,7 +46,7 @@ int	fill_textures(char *line, char *name, t_col_text col_text)
 	if (strcmp(name, "WE")== 0)
 		er = get_texture(line, &(col_text.WEtext));
 	else
-		return (printf("error: unknown texture identifier"),1);
+		return (printf("error: unknown texture identifier"), 1);
 	return (er);
 }
 

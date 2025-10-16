@@ -6,12 +6,13 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 14:28:58 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/16 16:44:00 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/16 18:56:16 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+// check map utils
 int is_line_empty(char *line)
 {
 	int i;
@@ -25,7 +26,7 @@ int is_line_empty(char *line)
 	}
 	return (SUCCESS);
 }
-
+// check map utils
 void go_to_map_start(int fd, char **line)
 {
 	while ((*line = get_next_line(fd)))
@@ -35,7 +36,7 @@ void go_to_map_start(int fd, char **line)
 		free(*line);
 	}
 }
-
+// check map utils
 void	check_map_char(char c, t_map *map)
 {
 	if (c != ' ' && c != '\n' && c != 'n' && c != 's' && c != 'w' && c != '0'
@@ -90,6 +91,7 @@ void stock_map(int fd, t_map *map)
 	free(line);
 }
 // Peut etre le mettre dans init et pas dans check
+// check map utils
 void get_height_and_width(int fd, t_map *map)
 {
 	int width;
@@ -144,7 +146,7 @@ int init_map(t_map *map)
 	map->error = false;
 	return (SUCCESS);
 }
-
+// check map utils
 void reset_gnl(int fd)
 {
 	char *line;
