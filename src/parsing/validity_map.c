@@ -102,14 +102,14 @@ int checkfilenamecub(char *map)
 	return (0);
 }
 
-int parsingcub3d(t_params param, char *map)
+int parsingcub3d(t_params *param, char *map)
 {
 	int fd;
 
 	fd = open(map,O_RDONLY);
 	if (fd == -1)
 		return (printf("error opening file"), 1);
-	if (checkfirstelems(param.col_text, fd)!= 0)
+	if (checkfirstelems(&(param->col_text), fd)!= 0)
 		return (1);
 	//checkmap(png, fd);
 
@@ -118,7 +118,7 @@ int parsingcub3d(t_params param, char *map)
 
 //------
 
-int checkfirstelems(t_col_text col_text, int fd)
+int checkfirstelems(t_col_text *col_text, int fd)
 {
 	char *line;
 	int color;
@@ -130,17 +130,17 @@ int checkfirstelems(t_col_text col_text, int fd)
 	while(line != 0)
 	{
 		//si color == 1 on doit s'assurer que la ligne suivante soit aussi une couleur
-		if (is_color(line, col_text)== 0)
+		if (is_color(line, col_text)== TRUE)
 		{
 			if (textures > 0 && textures < 4)
-				return(free(line), printf("error parameter are not written correctly"), 1);
+				return(free(line), printf("error parameter are not written correctly (4)"), ERROR);
 			color++;
 		}
 		//si texture n'est pas egale a 0 ou 4, la ligne suivante doit etre une texture obligatoirement
-		else if (is_textures(line, col_text) == 0)
+		else if (is_textures(line, col_text) == TRUE)
 		{
 			if (color == 1)
-				return (free(line), printf("error parameter are not written correctly"),1);
+				return (free(line), printf("error parameter are not written correctly (5)"), ERROR);
 			textures++;
 		}
 		// else
@@ -151,7 +151,7 @@ int checkfirstelems(t_col_text col_text, int fd)
 		line = get_next_line(fd);
 	}
 	if (color != 2 || textures != 4)
-		return(printf("error: the color or textures are not fully written"), 1);
-	return(0);
+		return(printf("error: the color or textures are not fully written (6)"), ERROR);
+	return(SUCCESS);
 }
 

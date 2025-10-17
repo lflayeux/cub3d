@@ -20,13 +20,13 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	return (0);
 }
 
-int init(t_params param, char *map)
+int init(t_params *param, char *map)
 {
 	if (checkfilenamecub(map) != 0)
-		return (printf("Usage: ./cub3d + file.cub"), 1);
+		return (printf("Usage: ./cub3d + file.cub"), ERROR);
 	if (parsingcub3d(param, map) != 0)
-		return (1);
-	return (0);
+		return (ERROR);
+	return (SUCCESS);
 }
 
 int main(int argc, char **argv)
@@ -37,9 +37,15 @@ int main(int argc, char **argv)
 	if (argc < 2)
 		return (printf(" error: Usage: ./a.out + file.cub"), 1);
 	ft_memset(&param, 0, sizeof(t_params));
-	if (init(param, argv[1]) != 0)
+	if (init(&param, argv[1]) != 0)
 		return (/*free_everything(param), printf("error"),*/ 1);
-	printf("success");
+	// printf("success");
+	printf("path: %s\n", param.col_text.NOtext );
+	printf("path: %s\n", param.col_text.SOtext );
+	printf("path: %s\n", param.col_text.WEtext );
+	printf("path: %s\n", param.col_text.EAtext );
+	printf("Fcolor: R%d | G%d | B%d\n", param.col_text.FR, param.col_text.FG, param.col_text.FB);
+	printf("Ccolor: R%d | G%d | B%d\n", param.col_text.CR, param.col_text.CG, param.col_text.CB);
 	return (0);
 
 

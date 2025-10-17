@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:54 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/16 18:50:22 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/17 14:25:44 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 
 # define ERROR -1
 # define SUCCESS 0
+# define TRUE 1
+# define FALSE 0
 
 // =============================
 // =========== STRUCT ==========
@@ -55,10 +57,10 @@
 // =========== INIT ============
 // =============================
 
-int			init(t_params param, char *map);
-int			parsingcub3d(t_params param, char *map);
+int			init(t_params *param, char *map);
+int			parsingcub3d(t_params *param, char *map);
 int			checkfilenamecub(char *map);
-int			checkfirstelems(t_col_text col_text, int fd);
+int			checkfirstelems(t_col_text *col_text, int fd);
 
 // =============================
 // =========== PARSING =========
