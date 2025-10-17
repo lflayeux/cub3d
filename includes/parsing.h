@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:16 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/17 17:06:46 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/17 17:21:41 by lflayeux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ bool		is_texture_ok(char *texture);
 // ============ MAP ============
 // =============================
 
-int	check_map();
+int check_map(char *file, t_params *param);
+int is_line_empty(char *line);
+void go_to_map_start(int fd, char **line, t_col_text *col_text);
+void	check_map_char(char c, t_map *map);
+void fill_map_line(char *line, t_map *map, int i);
+void reset_gnl(int fd);
+
+
+int init_map(t_map *map);
 
 #endif

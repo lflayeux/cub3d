@@ -14,7 +14,8 @@ SRC =	src/main.c \
 		src/parsing/validity_map.c \
 		src/parsing/check_map.c \
 		src/parsing/color_utils.c \
-
+		src/parsing/check_map_utils.c \
+		src/parsing/init.c \
 
 
 GREEN = \033[32m

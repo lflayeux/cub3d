@@ -20,7 +20,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	return (0);
 }
 
-int init(t_params *param, char *map)
+int check_and_init(t_params *param, char *map)
 {
 	if (checkfilenamecub(map) != 0)
 		return (printf("Usage: ./cub3d + file.cub"), ERROR);
@@ -37,25 +37,21 @@ int main(int argc, char **argv)
 	if (argc < 2)
 		return (printf(" error: Usage: ./a.out + file.cub"), 1);
 	ft_memset(&param, 0, sizeof(t_params));
-	if (init(&param, argv[1]) != 0)
+	if (check_and_init(&param, argv[1]) != 0)
 		return (/*free_everything(param), printf("error"),*/ 1);
 	// printf("success");
-	printf("path: %s\n", param.col_text.NOtext );
+	printf("pateeeeeeeeeeh: %s\n", param.col_text.NOtext );
 	printf("path: %s\n", param.col_text.SOtext );
 	printf("path: %s\n", param.col_text.WEtext );
 	printf("path: %s\n", param.col_text.EAtext );
 	printf("Fcolor: R%d | G%d | B%d\n", param.col_text.FR, param.col_text.FG, param.col_text.FB);
 	printf("Ccolor: R%d | G%d | B%d\n", param.col_text.CR, param.col_text.CG, param.col_text.CB);
-	return (0);
+	printf("nb line map = %d\n", param.col_text.nb_line);
+	printf(BCYAN "\n=============== MAP PARSING TEST ========================" RESET);
+	printf("\n\n");
 
-
-	// printf(BCYAN "\n=============== MAP PARSING TEST ========================" RESET);
-	// printf("\n\n");
-
-	// t_map map;
-	// (void)argc;
-	// if (check_map(argv[1], &map))
-	// 	printf(ONRED "ERROR DE MAP" RESET);
-	// ft_free_tab((void **)map.map);
-	// return 0;
+	if (check_map(argv[1], &param))
+		printf(ONRED "ERROR DE MAP" RESET);
+	ft_free_tab((void **)(param.map.map));
+	return 0;
 }
