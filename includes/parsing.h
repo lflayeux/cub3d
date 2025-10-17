@@ -6,7 +6,7 @@
 /*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:16 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/17 15:13:51 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/17 17:06:46 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@
 bool		is_color(char *line, t_col_text *col_text);
 int			fill_color(char *line, char color, t_col_text *col_text);
 int			get_color(char *line,int index, int *code);
+
+// =============================
+// ====== COLORS UTILS =========
+// =============================
+
+bool		is_coma_ok(char *line);
+bool		is_size_ok(char *line, int index);
+int			skipspace(char *line, int i);
 
 // =============================
 // ========== TEXTURES =========

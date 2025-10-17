@@ -6,7 +6,7 @@
 /*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:54 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/17 14:25:44 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/17 17:06:40 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int			checkfirstelems(t_col_text *col_text, int fd);
 // =========== UTILS ===========
 // =============================
 
-int		skipspace(char *line, int i);
+
 
 
 

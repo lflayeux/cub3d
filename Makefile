@@ -13,6 +13,7 @@ SRC =	src/main.c \
 		src/parsing/texture.c \
 		src/parsing/validity_map.c \
 		src/parsing/check_map.c \
+		src/parsing/color_utils.c \
 
 
 

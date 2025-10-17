@@ -1,9 +1,11 @@
 
+F 89,	255, 23  
+C 25,d5,21,2  
+
+
 
 NO	./texture/textureNO.xpm
 SO	./texture/textureSO.xpm
 WE	./texture/textureWE.xpm
 EA	./texture/textureEA.xpm
 
-F 89,255,12
-C 25,255,32

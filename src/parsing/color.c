@@ -1,11 +1,6 @@
 #include "cub3d.h"
 
-int skipspace(char *line, int i)
-{
-	while(line[i] && (line[i] == ' ' || line[i] == '\t'))
-		i++;
-	return(i);
-}
+
 
 bool    is_color(char *line, t_col_text *col_text)
 {
@@ -43,14 +38,15 @@ int fill_color(char *line, char color, t_col_text *col_text)
 
 	j = 0;
 	i = 0;
-
+	if (!is_coma_ok(line))
+		return(printf("error: RGB format incorrect (expected R,G,B)\n"), ERROR);
 	while(line[i] && (line[i] == ' ' || line[i] == 'C' || line[i] == 'F'))
 		i++;
 	while(j<3)
 	{
 		i = get_color(line, i, &temp_colors[j]);
 		if (i ==-1)
-			return(printf("error:invalid RGB value"), ERROR);
+			return(printf("error:invalid RGB value\n"), ERROR);
 		j++;
 	}
 	if (color == 'F' )
@@ -77,12 +73,15 @@ int get_color(char *line,int index, int *code)
 {
 	char colorcode[4];
 	int i;
+	int size;
 
+	size = 0;
 	i = 0;
 	ft_memset(colorcode, 0, 4);
-	while(line[index] && (line[index] == ' ' || line[index] == '\t'))
+	while(line[index] && (line[index] == ' ' || line[index] == '\t')) 
 		index++;
-
+	if (!is_size_ok(line, index))
+		return (printf("error: Usage: 0>'RGB'<255 \n"), ERROR);
 	while (line[index] && line[index] != ',' && line[index] != '\n')
 	{
 		if (line[index]>= '0' && line[index] <= '9')
