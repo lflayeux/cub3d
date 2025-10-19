@@ -1,5 +1,6 @@
 #include "cub3d.h"
 
+// JUSTE POUR LES TESTS A SUPPRIMER APRES
 void print_parse_result(t_params *param)
 {
 	int i;
@@ -37,7 +38,24 @@ int check_and_init(t_params *param, char *map)
 		return (print_parsing_error(MAP), ERROR);
 	return (SUCCESS);
 }
-
+void free_param(t_params *param)
+{
+	if (param == NULL)
+		return;
+	if (param->map.map)
+	{
+		ft_free_tab((void **)(param->map.map));
+		param->map.map = NULL;
+	}
+	if (param->col_text.NOtext)
+		free(param->col_text.NOtext);
+	if (param->col_text.SOtext)
+		free(param->col_text.SOtext);
+	if (param->col_text.WEtext)
+		free(param->col_text.WEtext);
+	if (param->col_text.EAtext)
+		free(param->col_text.EAtext);
+}
 int main(int argc, char **argv)
 {
 	t_params	param;
@@ -46,8 +64,10 @@ int main(int argc, char **argv)
 		return (print_parsing_error(USE), 1);
 	ft_memset(&param, 0, sizeof(t_params));
 	if (check_and_init(&param, argv[1]) == ERROR)
-		return (ERROR);
+		return (free_param(&param), ERROR);
+	// JUSTE POUR LES TESTS A SUPPRIMER APRES
 	print_parse_result(&param);
+	free_param(&param);
 	// ft_free_tab((void **)(param.map.map));
 	return (SUCCESS);
 }

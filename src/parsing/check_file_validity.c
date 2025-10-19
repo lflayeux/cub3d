@@ -106,14 +106,11 @@ int check_first_elems(t_col_text *col_text, int fd)
 	line = get_next_line(fd);
 	while (line != 0)
 	{
-		if (is_color(line, col_text) == TRUE &&
-			(col_text->nb_text == 0 || col_text->nb_text == 4))
+		if (is_color(line, col_text) == TRUE && col_text->nb_text <= 4)
 			col_text->nb_color++;
-		else if (is_textures(line, col_text) == TRUE &&
-			(col_text->nb_color == 0 || col_text->nb_color == 2))
+		else if (is_texture(line, col_text) == TRUE && col_text->nb_color <= 2)
 			col_text->nb_text++;
-		else if ((is_color(line, col_text) == TRUE && col_text->nb_text > 0) ||
-				(is_textures(line, col_text) == TRUE && col_text->nb_color > 0))
+		else if (is_line_empty(line) == FALSE || is_color(line, col_text) == TRUE )
 			return (free(line), print_parsing_error(COLOR_TEXTURE), ERROR);
 		free(line);
 		if (col_text->nb_color == 2 && col_text->nb_text == 4)

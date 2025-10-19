@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 18:58:59 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/19 19:29:32 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/19 20:02:37 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void print_use_error(void)
 {
-	printf(ONRED "\nUSAGE: ./cub3d + file.cub" RESET);
+	printf(ONRED "\nError: USAGE: ./cub3d + file.cub" RESET);
 	printf("\n\nThe .cub file must contain:\n");
 	printf("- 4 texture paths (NO, SO, WE, EA)\n");
 	printf("- 2 colors (F for Floor, C for Ceiling)\n");
@@ -22,13 +22,13 @@ void print_use_error(void)
 }
 void	print_file_error(void)
 {
-	printf(ONRED "\nERROR OPENING FILE" RESET);
+	printf(ONRED "\nError: OPENING FILE" RESET);
 	printf("\n\nPlease check if the file exists and is accessible.\n");
 }
 
 void print_col_text_error(void)
 {
-	printf(ONRED "\nERROR IN COLOR/TEXTURE PARAMETERS" RESET);
+	printf(ONRED "\nError: COLOR/TEXTURE PARAMETERS" RESET);
 	printf(BRED "\n\nColor must be formatted like this:\n");
 	printf("- F R,G,B (F for Floor)\n");
 	printf("- C R,G,B (C for Ceiling)\n");
@@ -43,7 +43,7 @@ void print_col_text_error(void)
 
 void print_map_error(void)
 {
-	printf(ONRED "\nMAP ERROR" RESET);
+	printf(ONRED "\nError: MAP" RESET);
 	printf("\n\nThe map must be closed and only contain valid characters:\n");
 	printf("- '1' for walls\n");
 	printf("- '0' for empty spaces\n");

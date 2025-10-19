@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 14:28:58 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/19 18:55:07 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/19 21:30:39 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,27 +87,21 @@ int check_map(char *file, t_params *param)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		perror("Error opening file");
-		return (ERROR);
-	}
+		return (print_parsing_error(OPEN_FILE), ERROR);
 	get_height_and_width(fd, &(param->map), &(param->col_text));
 	reset_gnl(fd);
 	close(fd);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		perror("Error opening file");
-		return (ERROR);
-	}
+		return (print_parsing_error(OPEN_FILE), ERROR);
 	if (init_map(&(param->map)) == ERROR)
 		return (ERROR);
 	stock_map(fd, &(param->map), &(param->col_text));
 	reset_gnl(fd);
 	close(fd);
 	if (is_map_closed(&(param->map)) == FALSE)
-		return ((ft_free_tab((void **)param->map.map)), ERROR);
+		return (ERROR);
 	if (is_map_valid(&(param->map)) == FALSE)
-		return (ft_free_tab((void **)param->map.map), ERROR);
+		return (ERROR);
 	return (SUCCESS);
 }
