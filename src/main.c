@@ -1,31 +1,40 @@
 #include "cub3d.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+void print_parse_result(t_params *param)
 {
-	size_t	i;
-	size_t	j;
+	int i;
+	int j;
 
+	printf(BCYAN "\n=============== COL_TEXT ========================\n\n" RESET);
+	printf("path: %s\n", param->col_text.NOtext );
+	printf("path: %s\n", param->col_text.SOtext );
+	printf("path: %s\n", param->col_text.WEtext );
+	printf("path: %s\n\n", param->col_text.EAtext );
+	printf("Fcolor: R%d | G%d | B%d\n", param->col_text.FR, param->col_text.FG, param->col_text.FB);
+	printf("Ccolor: R%d | G%d | B%d\n\n", param->col_text.CR, param->col_text.CG, param->col_text.CB);
+	printf(BCYAN "\n=============== MAP ========================\n\n" RESET);
 	i = 0;
-	if (!(*little))
-		return ((char *)big);
-	while (big[i] && (i < len))
+	while (i < param->map.height)
 	{
 		j = 0;
-		while ((big[i + j] == little[j]) && (i + j < len) && big[i + j])
+		while (j < param->map.width)
+		{
+			printf("%c", param->map.map[i][j]);
 			j++;
-		if (!little[j])
-			return ((char *)&big[i]);
+		}
 		i++;
+		printf("\n");
 	}
-	return (0);
 }
 
 int check_and_init(t_params *param, char *map)
 {
-	if (checkfilenamecub(map) != 0)
-		return (printf("Usage: ./cub3d + file.cub"), ERROR);
-	if (parsingcub3d(param, map) != 0)
+	if (is_file_cub(map) == FALSE)
+		return (print_parsing_error(OPEN_FILE), ERROR);
+	if (parsing_file_cub(param, map) == ERROR)
 		return (ERROR);
+	if (check_map(map, param) == ERROR)
+		return (print_parsing_error(MAP), ERROR);
 	return (SUCCESS);
 }
 
@@ -33,25 +42,12 @@ int main(int argc, char **argv)
 {
 	t_params	param;
 	
-	
 	if (argc < 2)
-		return (printf(" error: Usage: ./a.out + file.cub"), 1);
+		return (print_parsing_error(USE), 1);
 	ft_memset(&param, 0, sizeof(t_params));
-	if (check_and_init(&param, argv[1]) != 0)
-		return (/*free_everything(param), printf("error"),*/ 1);
-	// printf("success");
-	printf("pateeeeeeeeeeh: %s\n", param.col_text.NOtext );
-	printf("path: %s\n", param.col_text.SOtext );
-	printf("path: %s\n", param.col_text.WEtext );
-	printf("path: %s\n", param.col_text.EAtext );
-	printf("Fcolor: R%d | G%d | B%d\n", param.col_text.FR, param.col_text.FG, param.col_text.FB);
-	printf("Ccolor: R%d | G%d | B%d\n", param.col_text.CR, param.col_text.CG, param.col_text.CB);
-	printf("nb line map = %d\n", param.col_text.nb_line);
-	printf(BCYAN "\n=============== MAP PARSING TEST ========================" RESET);
-	printf("\n\n");
-
-	if (check_map(argv[1], &param))
-		printf(ONRED "ERROR DE MAP" RESET);
-	ft_free_tab((void **)(param.map.map));
-	return 0;
+	if (check_and_init(&param, argv[1]) == ERROR)
+		return (ERROR);
+	print_parse_result(&param);
+	// ft_free_tab((void **)(param.map.map));
+	return (SUCCESS);
 }

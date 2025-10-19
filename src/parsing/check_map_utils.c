@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:11:09 by lflayeux          #+#    #+#             */
-/*   Updated: 2025/10/17 17:13:56 by lflayeux         ###   ########.fr       */
+/*   Updated: 2025/10/18 21:36:12 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,15 @@ void fill_map_line(char *line, t_map *map, int i)
 	while (line[j] && line[j] != '\n' && j < map->width)
 	{
 		check_map_char(line[j], map);
-		map->map[i][j] = line[j];
+		if (line[j] == ' ')
+			map->map[i][j] = '0';
+		else
+			map->map[i][j] = line[j];
 		j++;
 	}
-	while (j < map->width)
+	while (j + 1 < map->width)
 	{
-		map->map[i][j] = ' ';
+		map->map[i][j] = '0';
 		j++;
 	}
 }

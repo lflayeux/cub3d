@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 14:28:58 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/17 17:13:30 by lflayeux         ###   ########.fr       */
+/*   Updated: 2025/10/19 18:55:07 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,30 +60,8 @@ void get_height_and_width(int fd, t_map *map, t_col_text *col_text)
 	free(line);
 	map->height = height;
 	map->width = width;
-	printf("height => %d\nwidth => %d\n", map->height, map->width);
 }
 
-void print_map(t_map *map)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < map->height)
-	{
-		j = 0;
-		while (j < map->width)
-		{
-			if (map->map[i][j] == ' ')
-				printf(".");
-			else
-				printf("%c", map->map[i][j]);
-			j++;
-		}
-		i++;
-		printf("\n");
-	}
-}
 int is_map_valid(t_map *map)
 {
 	if (map->error == true)
@@ -103,13 +81,6 @@ int is_map_valid(t_map *map)
 	return (TRUE);
 }
 
-// void is_map_closed(t_map *map)
-// {
-	
-
-
-// }
-
 int check_map(char *file, t_params *param)
 {
 	int fd;
@@ -120,7 +91,6 @@ int check_map(char *file, t_params *param)
 		perror("Error opening file");
 		return (ERROR);
 	}
-	printf("check_map: %s\n", file);
 	get_height_and_width(fd, &(param->map), &(param->col_text));
 	reset_gnl(fd);
 	close(fd);
@@ -135,14 +105,9 @@ int check_map(char *file, t_params *param)
 	stock_map(fd, &(param->map), &(param->col_text));
 	reset_gnl(fd);
 	close(fd);
-	// is_map_closed(map);
-	print_map(&(param->map));
-	// printf("map->n %d\n", map->n);
-	// printf("map->s %d\n", map->s);
-	// printf("map->e %d\n", map->e);
-	// printf("map->w %d\n", map->w);
-	// printf("map->error %d\n", map->error);
-	if (is_map_valid(&(param->map)) == ERROR)
+	if (is_map_closed(&(param->map)) == FALSE)
+		return ((ft_free_tab((void **)param->map.map)), ERROR);
+	if (is_map_valid(&(param->map)) == FALSE)
 		return (ft_free_tab((void **)param->map.map), ERROR);
 	return (SUCCESS);
 }

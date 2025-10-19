@@ -1,6 +1,16 @@
-#include "cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_color.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/19 19:40:22 by pandemonium       #+#    #+#             */
+/*   Updated: 2025/10/19 19:40:42 by pandemonium      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-
+#include "../includes/cub3d.h"
 
 bool    is_color(char *line, t_col_text *col_text)
 {
@@ -13,14 +23,14 @@ bool    is_color(char *line, t_col_text *col_text)
 		if (line[i] == 'F')
 		{
 			if (col_text->Fcolor != 0)
-				return (printf("Error double parameter for Fcolor"), ERROR);
+				return (ERROR);
 			fill_color(line, 'F', col_text);
 			return (TRUE);
 		}
 		if (line[i] == 'C')
 		{
 			if (col_text->Ccolor != 0)
-				return(printf("Error double parameter for Ccolor"), ERROR);
+				return(ERROR);
 			fill_color(line, 'C', col_text);
 			return (TRUE);
 		}
@@ -39,14 +49,14 @@ int fill_color(char *line, char color, t_col_text *col_text)
 	j = 0;
 	i = 0;
 	if (!is_coma_ok(line))
-		return(printf("error: RGB format incorrect (expected R,G,B)\n"), ERROR);
+		return(ERROR);
 	while(line[i] && (line[i] == ' ' || line[i] == 'C' || line[i] == 'F'))
 		i++;
 	while(j<3)
 	{
 		i = get_color(line, i, &temp_colors[j]);
 		if (i ==-1)
-			return(printf("error:invalid RGB value\n"), ERROR);
+			return(ERROR);
 		j++;
 	}
 	if (color == 'F' )
@@ -73,15 +83,15 @@ int get_color(char *line,int index, int *code)
 {
 	char colorcode[4];
 	int i;
-	int size;
+	// int size;
 
-	size = 0;
+	// size = 0;
 	i = 0;
 	ft_memset(colorcode, 0, 4);
 	while(line[index] && (line[index] == ' ' || line[index] == '\t')) 
 		index++;
 	if (!is_size_ok(line, index))
-		return (printf("error: Usage: 0>'RGB'<255 \n"), ERROR);
+		return (ERROR);
 	while (line[index] && line[index] != ',' && line[index] != '\n')
 	{
 		if (line[index]>= '0' && line[index] <= '9')
@@ -98,7 +108,7 @@ int get_color(char *line,int index, int *code)
 	}
 	*code = atoi(colorcode);
 	if (*code < 0 || *code > 255)
-		return (printf("error : wrong number in the RGB"), ERROR);
+		return (ERROR);
 	if (line[index] == ',')
 		index++;
 	return (index);

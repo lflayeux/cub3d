@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:54 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/17 17:22:01 by lflayeux         ###   ########.fr       */
+/*   Updated: 2025/10/19 19:07:50 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,19 @@
 # define TRUE 1
 # define FALSE 0
 
+enum parsing_error
+{
+	USE,
+	OPEN_FILE,
+	COLOR_TEXTURE,
+	MAP,
+};
+
 // =============================
 // =========== STRUCT ==========
 // =============================
 
 # include "struct.h"
-
-// =============================
-// =========== INIT ============
-// =============================
-
-int			init(t_params *param, char *map);
-int			parsingcub3d(t_params *param, char *map);
-int			checkfilenamecub(char *map);
-int			checkfirstelems(t_col_text *col_text, int fd);
 
 // =============================
 // =========== PARSING =========

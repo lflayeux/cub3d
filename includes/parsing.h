@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:16 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/17 17:21:41 by lflayeux         ###   ########.fr       */
+/*   Updated: 2025/10/19 19:16:29 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define PARSING_H
 
 #include "struct.h"
+
+// =============================
+// =========== ERROR ===========
+// =============================
+
+void print_parsing_error(enum parsing_error error_type);
 
 // =============================
 // =========== COLORS ==========
@@ -51,7 +57,15 @@ void	check_map_char(char c, t_map *map);
 void fill_map_line(char *line, t_map *map, int i);
 void reset_gnl(int fd);
 
-
+int is_map_closed(t_map *map);
 int init_map(t_map *map);
+
+// =============================
+// =========== INIT ============
+// =============================
+
+int			init(t_params *param, char *map);
+int			parsing_file_cub(t_params *param, char *map);
+int			is_file_cub(char *map);
 
 #endif

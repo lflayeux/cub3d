@@ -88,67 +88,53 @@
 
 //faire la struct commencer le main, et les structs plus faire le parsing cub et le init
 
-
-
-int checkfilenamecub(char *map)
+int is_file_cub(char *map)
 {
 	size_t len;
 	size_t place;
 
 	len = strlen(map);
 	place = len - 4;
-	if (ft_strncmp(map+place, ".cub", 4) != 0)
-		return (1);
-	return (0);
+	if (ft_strncmp(map + place, ".cub", 4) != 0)
+		return (FALSE);
+	return (TRUE);
 }
-
-int parsingcub3d(t_params *param, char *map)
-{
-	int fd;
-
-	fd = open(map,O_RDONLY);
-	if (fd == -1)
-		return (printf("error opening file"), 1);
-	if (checkfirstelems(&(param->col_text), fd)!= 0)
-		return (1);
-	//checkmap(png, fd);
-	close(fd);
-	return (0);
-}
-
-//------
-
-int checkfirstelems(t_col_text *col_text, int fd)
+int check_first_elems(t_col_text *col_text, int fd)
 {
 	char *line;
 
 	line = get_next_line(fd);
-	while(line != 0)
+	while (line != 0)
 	{
-		//si color == 1 on doit s'assurer que la ligne suivante soit aussi une couleur
-		if (is_color(line, col_text)== TRUE)
-		{
-			if (col_text->nb_text > 0 && col_text->nb_text < 4)
-				return(free(line), printf("error parameter are not written correctly (4)"), ERROR);
+		if (is_color(line, col_text) == TRUE &&
+			(col_text->nb_text == 0 || col_text->nb_text == 4))
 			col_text->nb_color++;
-		}
-		//si texture n'est pas egale a 0 ou 4, la ligne suivante doit etre une texture obligatoirement
-		else if (is_textures(line, col_text) == TRUE)
-		{
-			if (col_text->nb_color == 1)
-				return (free(line), printf("error parameter are not written correctly (5)"), ERROR);
+		else if (is_textures(line, col_text) == TRUE &&
+			(col_text->nb_color == 0 || col_text->nb_color == 2))
 			col_text->nb_text++;
-		}
-		// else
-		// 	return(printf("error wrong parameter"), 1);
+		else if ((is_color(line, col_text) == TRUE && col_text->nb_text > 0) ||
+				(is_textures(line, col_text) == TRUE && col_text->nb_color > 0))
+			return (free(line), print_parsing_error(COLOR_TEXTURE), ERROR);
 		free(line);
-		if (col_text->nb_color ==2 && col_text->nb_text == 4)
+		if (col_text->nb_color == 2 && col_text->nb_text == 4)
 			break;
 		col_text->nb_line++;
 		line = get_next_line(fd);
 	}
 	if (col_text->nb_color != 2 || col_text->nb_text != 4)
-		return(printf("error: the color or textures are not fully written (6)"), ERROR);
-	return(SUCCESS);
+		return (print_parsing_error(COLOR_TEXTURE), ERROR);
+	return (SUCCESS);
 }
 
+int parsing_file_cub(t_params *param, char *map)
+{
+	int fd;
+
+	fd = open(map,O_RDONLY);
+	if (fd == ERROR)
+		return (print_parsing_error(OPEN_FILE), ERROR);
+	if (check_first_elems(&(param->col_text), fd) == ERROR)
+		return (ERROR);
+	close(fd);
+	return (SUCCESS);
+}
