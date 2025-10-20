@@ -48,7 +48,11 @@ int	get_texture(char *line, char **texture)
 	}
 	(*texture)[y] = '\0';
 	if (is_texture_ok(*texture) == FALSE)
-		return (free(*texture), ERROR);
+	{
+		free(*texture);
+		*texture = NULL;
+		return (ERROR);
+	}
 	return (SUCCESS);
 }
 int	fill_textures(char *line, char *name, t_col_text *col_text)

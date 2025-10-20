@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 14:28:58 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/20 11:21:50 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/20 12:41:26 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void stock_map(int fd, t_map *map, t_col_text *col_text)
 	char *line;
 	int i;
 
-	(void)map;
 	line = NULL;
 	i = 0;
 	go_to_map_start(fd, &line, col_text);

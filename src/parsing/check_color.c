@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 19:40:22 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/20 10:59:21 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/20 12:39:34 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int get_color(char *line,int index, int *code)
 	{
 		if (line[index]>= '0' && line[index] <= '9')
 		{
-			if (i<3)
+			if (i < 3)
 			{
 				colorcode[i] = line[index];
 				i++;
@@ -37,7 +37,7 @@ int get_color(char *line,int index, int *code)
 			return (ERROR);
 		index++;
 	}
-	*code = atoi(colorcode);
+	*code = ft_atoi(colorcode);
 	if (*code < 0 || *code > 255)
 		return (ERROR);
 	if (line[index] == ',')

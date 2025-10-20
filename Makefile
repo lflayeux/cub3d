@@ -19,14 +19,26 @@ SRC =	src/main.c \
 		src/parsing/init.c \
 		src/parsing/parse_error.c \
 
+# ======================
+# ======= COLOR ========
+# ======================
 
 GREEN = \033[32m
 RED = \033[31m
 YELLOW = \033[33m
 RESET = \033[0m
 
+# ======================
+# ======= LIBFT ========
+# ======================
+
 LIBFT_DIR = ./libft
 LIBFT_A = $(LIBFT_DIR)/libft.a
+
+# ======================
+# ==== COMPILATION =====
+# ======================
+
 build/%.o: src/%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -40,16 +52,21 @@ $(NAME): $(OBJ) $(LIBFT_A)
 $(LIBFT_A):
 	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory
 
+# ======================
+# ======= RULES ========
+# ======================
+
 all: $(NAME)
 
 clean:
 	@rm -rf build/
-	@$(MAKE) -C $(LIBFT_DIR) clean --no-print-directory 
+	@$(MAKE) -C $(LIBFT_DIR) clean --no-print-directory
+	@$(MAKE) -C tests clean --no-print-directory
 	@echo "$(YELLOW)All object files cleaned. 🧹$(RESET)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) fclean --no-print-directory 
+	@$(MAKE) -C $(LIBFT_DIR) fclean --no-print-directory
 	@echo "$(YELLOW)Executable cleaned. 🧹$(RESET)"
 
 re: fclean all
@@ -57,4 +74,14 @@ re: fclean all
 valg: re
 	@valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
 
-.PHONY: clean fclean re valg
+# ======================
+# ======= TESTS ========
+# ======================
+test: re
+	@$(MAKE) -C tests run --no-print-directory
+
+# ======================
+# ======= PHONY ========
+# ======================
+
+.PHONY: clean fclean re valg test

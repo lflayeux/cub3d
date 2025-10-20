@@ -93,7 +93,7 @@ int is_file_cub(char *map)
 	size_t len;
 	size_t place;
 
-	len = strlen(map);
+	len = ft_strlen(map);
 	place = len - 4;
 	if (ft_strncmp(map + place, ".cub", 4) != 0)
 		return (FALSE);
