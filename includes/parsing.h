@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:16 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/19 20:57:45 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/20 14:05:39 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ bool		is_color(char *line, t_col_text *col_text);
 
 bool		is_coma_ok(char *line);
 bool		is_size_ok(char *line, int index);
+bool		is_letter_ok(char *line);
 int			skipspace(char *line, int i);
 
 // =============================

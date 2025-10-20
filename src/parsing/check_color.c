@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 19:40:22 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/20 12:39:34 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/20 16:02:33 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int get_color(char *line,int index, int *code)
 				i++;
 			}
 		}
-		else if(line[index] != ' ')
+		else if(line[index] != ' ' && line[index] != '\t')
 			return (ERROR);
 		index++;
 	}
@@ -45,6 +45,8 @@ int get_color(char *line,int index, int *code)
 	return (index);
 }
 
+
+
 int fill_color(char *line, char color, t_col_text *col_text)
 {
 	int i;
@@ -54,14 +56,16 @@ int fill_color(char *line, char color, t_col_text *col_text)
 	j = 0;
 	i = 0;
 	if (!is_coma_ok(line))
-	return(ERROR);
+		return(ERROR);
+	if (!is_letter_ok(line))
+		return(ERROR);
 	while(line[i] && (line[i] == ' ' || line[i] == 'C' || line[i] == 'F'))
-	i++;
+		i++;
 	while(j<3)
 	{
 		i = get_color(line, i, &temp_colors[j]);
 		if (i ==-1)
-		return(ERROR);
+			return(ERROR);
 		j++;
 	}
 	if (color == 'F' )
@@ -79,8 +83,7 @@ int fill_color(char *line, char color, t_col_text *col_text)
 		col_text->Ccolor++;
 	}
 	else
-	return (ERROR);
-	
+		return (ERROR);
 	return(SUCCESS);
 }
 

@@ -5,7 +5,7 @@ bool is_size_ok(char *line, int index)
 	int i;
 
 	i = 0;
-	while(line[index] && line[index] != ',')
+	while(line[index] && line[index] != ',' && line[index] != '\n')
 	{
 		index++;
 		if (line[index] != ' ' && line[index] != '\t' )
@@ -31,6 +31,24 @@ bool is_coma_ok(char *line)
 	}
 	if (comma_count != 2)
 		return(FALSE);
+	return (TRUE);
+}
+
+bool is_letter_ok(char *line)
+{
+	int i;
+	int letter;
+
+	letter = 0;
+	i = 0;
+	while (line[i])
+	{
+		if (line[i]== 'F' || line[i] == 'C')
+			letter++;
+		i++;
+	}
+	if (letter != 1)
+		return (FALSE);
 	return (TRUE);
 }
 

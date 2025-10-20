@@ -15,6 +15,7 @@ bool	is_texture_ok(char *texture)
 	fd = open(texture, O_RDONLY);
 	if (fd == -1)
 		return (FALSE);
+	//check si le fichier n'est pas corrompue avec minlx image
 	// je check si le document est remplie? je m'assure qu'il fonctionne?
 	// check d'une partie specifique du fichier
 	close(fd);
@@ -48,11 +49,7 @@ int	get_texture(char *line, char **texture)
 	}
 	(*texture)[y] = '\0';
 	if (is_texture_ok(*texture) == FALSE)
-	{
-		free(*texture);
-		*texture = NULL;
 		return (ERROR);
-	}
 	return (SUCCESS);
 }
 int	fill_textures(char *line, char *name, t_col_text *col_text)

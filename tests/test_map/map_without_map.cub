@@ -1,6 +1,6 @@
 
 F 89,	255, 23  
-C 25,21,2  
+C 25,d5,21,2  
 
 
 
@@ -9,3 +9,11 @@ SO	./texture/textureSO.xpm
 WE	./texture/textureWE.xpm
 EA	./texture/textureEA.xpm
 
+             
+1111111111
+1N00000001
+1000000001
+10       1
+1000000001
+1000000001
+11111111111
