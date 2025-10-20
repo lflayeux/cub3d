@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 18:58:59 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/19 20:02:37 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/20 11:27:25 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void print_map_error(void)
 	printf("- '1' for walls\n");
 	printf("- '0' for empty spaces\n");
 	printf("- 'N', 'S', 'E', 'W' for player start positions\n");
-	printf("Ensure there is exactly one player start position.\n");
+	printf("Ensure there is exactly one player start position.\n" RESET);
 }
 void print_parsing_error(enum parsing_error error_type)
 {

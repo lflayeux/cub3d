@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_algo.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:26:01 by lflayeux          #+#    #+#             */
-/*   Updated: 2025/10/19 16:31:29 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/20 11:53:47 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,20 @@ void	get_player_position(t_map *map)
 		i++;
 	}
 }
+
+void	ft_free_bool(bool **to_free, int height)
+{
+	int i;
+
+	i = 0;
+	while (i < height)
+	{
+		free(to_free[i]);
+		i++;
+	}	
+	free(to_free);
+}
+
 int is_map_closed(t_map *map)
 {
 	bool **visited;
@@ -75,7 +89,7 @@ int is_map_closed(t_map *map)
 		i++;
 	}
 	flood_fill(map, map->player_x, map->player_y, visited);
-	ft_free_tab((void **)visited);
+	ft_free_bool(visited, map->height);
 	if (map->error == true)
 		return (FALSE);
 	return (TRUE);
