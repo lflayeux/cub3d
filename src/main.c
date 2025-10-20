@@ -56,18 +56,49 @@ void free_param(t_params *param)
 	if (param->col_text.EAtext)
 		free(param->col_text.EAtext);
 }
-int main(int argc, char **argv)
+
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	t_params	param;
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
+
+int main(/*int argc, char **argv*/void)
+{
+	// t_params	param;
 	
-	if (argc < 2)
-		return (print_parsing_error(USE), 1);
-	ft_memset(&param, 0, sizeof(t_params));
-	if (check_and_init(&param, argv[1]) == ERROR)
-		return (free_param(&param), ERROR);
-	// JUSTE POUR LES TESTS A SUPPRIMER APRES
-	print_parse_result(&param);
-	free_param(&param);
+	// if (argc < 2)
+	// 	return (print_parsing_error(USE), 1);
+	// ft_memset(&param, 0, sizeof(t_params));
+	// if (check_and_init(&param, argv[1]) == ERROR)
+	// 	return (free_param(&param), ERROR);
+	// // JUSTE POUR LES TESTS A SUPPRIMER APRES
+	// print_parse_result(&param);
+	// free_param(&param);
 	// ft_free_tab((void **)(param.map.map));
+	void *mlx;
+	void *mlx_win;
+	// t_data	img;
+	void *xpm;
+	int xpm_width;
+	int xpm_height;
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920,1080, "hello word");
+	
+	
+	
+
+	// img.img = mlx_new_image(mlx, 1920, 1080);
+	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,&img.endian);
+	// my_mlx_pixel_put(&img, 200, 200, 0x00FF0000);
+	xpm = mlx_xpm_file_to_image(mlx, "./texture/texture2.xpm", &xpm_width, &xpm_height);
+	mlx_put_image_to_window(mlx, mlx_win,xpm, 0, 0);
+	mlx_loop(mlx);
 	return (SUCCESS);
 }
+
