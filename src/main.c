@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/21 15:46:56 by pandemonium       #+#    #+#             */
+/*   Updated: 2025/10/21 16:21:45 by pandemonium      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 // JUSTE POUR LES TESTS A SUPPRIMER APRES
@@ -38,25 +50,6 @@ int check_and_init(t_params *param, char *map)
 		return (print_parsing_error(MAP), ERROR);
 	return (SUCCESS);
 }
-void free_param(t_params *param)
-{
-	if (param == NULL)
-		return;
-	if (param->map.map)
-	{
-		ft_free_tab((void **)(param->map.map));
-		param->map.map = NULL;
-	}
-	if (param->col_text.NOtext)
-		free(param->col_text.NOtext);
-	if (param->col_text.SOtext)
-		free(param->col_text.SOtext);
-	if (param->col_text.WEtext)
-		free(param->col_text.WEtext);
-	if (param->col_text.EAtext)
-		free(param->col_text.EAtext);
-}
-
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -66,39 +59,26 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-
-int main(/*int argc, char **argv*/void)
+int main(int argc, char **argv)
 {
-	// t_params	param;
+	t_params	param;
 	
-	// if (argc < 2)
-	// 	return (print_parsing_error(USE), 1);
-	// ft_memset(&param, 0, sizeof(t_params));
-	// if (check_and_init(&param, argv[1]) == ERROR)
-	// 	return (free_param(&param), ERROR);
-	// // JUSTE POUR LES TESTS A SUPPRIMER APRES
-	// print_parse_result(&param);
-	// free_param(&param);
-	// ft_free_tab((void **)(param.map.map));
-	void *mlx;
-	void *mlx_win;
-	// t_data	img;
-	void *xpm;
-	int xpm_width;
-	int xpm_height;
+	if (argc < 2)
+		return (print_parsing_error(USE), 1);
+	ft_memset(&param, 0, sizeof(t_params));
+	if (check_and_init(&param, argv[1]) == ERROR)
+		return (free_param(&param), ERROR);
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920,1080, "hello word");
-	
-	
-	
-
-	// img.img = mlx_new_image(mlx, 1920, 1080);
-	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,&img.endian);
-	// my_mlx_pixel_put(&img, 200, 200, 0x00FF0000);
-	xpm = mlx_xpm_file_to_image(mlx, "./texture/texture2.xpm", &xpm_width, &xpm_height);
-	mlx_put_image_to_window(mlx, mlx_win,xpm, 0, 0);
-	mlx_loop(mlx);
+	// ======= JUSTE POUR LES TESTS A SUPPRIMER APRES ========
+	print_parse_result(&param);
+	// ===================== MINI MAP =====================================
+	if (init_mlx(&param) == ERROR)
+		return (destroy_mlx(&param), free_param(&param), ERROR);
+	init_player(&param);
+	mini_map(&param);
+	mlx_loop(param.mlx.mlx);
+	destroy_mlx(&param);
+	free_param(&param);
 	return (SUCCESS);
 }
 

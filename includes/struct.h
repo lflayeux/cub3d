@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:48:09 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/18 21:47:21 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/21 14:28:36 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,39 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	t_data	img;
+}				t_mlx;
+
+
+// =============================
+// =========== PLAYER ==========
+// =============================
+
+typedef struct s_player
+{
+	float	x;
+	float	y;
+	float	dir_x;
+	float	dir_y;
+	float	plane_x;
+	float	plane_y;
+}				t_player;
+
 // =============================
 // =========== GLOBAL ==========
 // =============================
 
 typedef struct	s_params
 {
-	t_map	map;
+	t_map		map;
 	t_col_text	col_text;
+	t_mlx		mlx;
+	t_player	player;
 } t_params;
 
 # endif

@@ -18,6 +18,9 @@ SRC =	src/main.c \
 		src/parsing/check_map_algo.c \
 		src/parsing/init.c \
 		src/parsing/parse_error.c \
+		src/game/init_struct_game.c \
+		src/game/mini_map.c \
+		src/utils/free.c \
 
 # ======================
 # ======= COLOR ========

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:54 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/20 17:40:05 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/21 16:19:26 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define SUCCESS 0
 # define TRUE 1
 # define FALSE 0
+# define TILE_SIZE 13
 
 enum parsing_error
 {
@@ -69,10 +70,19 @@ enum parsing_error
 # include "parsing.h"
 
 // =============================
+// ============ GAME ===========
+// =============================
+
+void init_player(t_params *param);
+int init_mlx(t_params *param);
+void mini_map(t_params *param);
+
+// =============================
 // =========== UTILS ===========
 // =============================
 
-
+void destroy_mlx(t_params *param);
+void free_param(t_params *param);
 
 
 
