@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:46:56 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/21 16:21:45 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/22 16:47:14 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,6 @@ int check_and_init(t_params *param, char *map)
 	return (SUCCESS);
 }
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
 int main(int argc, char **argv)
 {
 	t_params	param;
@@ -76,6 +68,7 @@ int main(int argc, char **argv)
 		return (destroy_mlx(&param), free_param(&param), ERROR);
 	init_player(&param);
 	mini_map(&param);
+	mlx_put_image_to_window(param.mlx.mlx, param.mlx.win, param.mlx.img.img, 0, 0);
 	mlx_loop(param.mlx.mlx);
 	destroy_mlx(&param);
 	free_param(&param);

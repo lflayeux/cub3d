@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:54 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/21 16:19:26 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/22 17:04:53 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@
 # define SUCCESS 0
 # define TRUE 1
 # define FALSE 0
-# define TILE_SIZE 13
+# define TILE_SIZE 15
+# define FOV 60
+# define M_PI 3.14159265358979323846
+# define WIDTH 1920
+# define HEIGHT 1080
 
 enum parsing_error
 {
@@ -83,6 +87,7 @@ void mini_map(t_params *param);
 
 void destroy_mlx(t_params *param);
 void free_param(t_params *param);
+void	my_mlx_pixel_put(t_data img, int x, int y, int color);
 
 
 

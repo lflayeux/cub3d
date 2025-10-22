@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:48:09 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/21 14:28:36 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/22 15:43:23 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,14 @@ typedef struct s_mlx
 
 typedef struct s_player
 {
-	float	x;
-	float	y;
+	float	pos_x;
+	float	pos_y;
 	float	dir_x;
 	float	dir_y;
 	float	plane_x;
 	float	plane_y;
+	float	ray_x;
+	float	ray_y;
 }				t_player;
 
 // =============================

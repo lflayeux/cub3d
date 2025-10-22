@@ -20,7 +20,9 @@ SRC =	src/main.c \
 		src/parsing/parse_error.c \
 		src/game/init_struct_game.c \
 		src/game/mini_map.c \
+		src/game/mini_map_ray.c \
 		src/utils/free.c \
+		src/utils/mlx_utils.c \
 
 # ======================
 # ======= COLOR ========
