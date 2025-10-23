@@ -6,35 +6,35 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:12:25 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/21 16:23:30 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/23 11:44:27 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void destroy_mlx(t_params *param)
+void destroy_mlx(t_game *game)
 {
-	if (param->mlx.img.img)
-		mlx_destroy_image(param->mlx.mlx, param->mlx.img.img);
-	if (param->mlx.win)
-		mlx_destroy_window(param->mlx.mlx, param->mlx.win);
+	if (game->mlx.img.img)
+		mlx_destroy_image(game->mlx.mlx, game->mlx.img.img);
+	if (game->mlx.win)
+		mlx_destroy_window(game->mlx.mlx, game->mlx.win);
 }
 
-void free_param(t_params *param)
+void free_game(t_game *game)
 {
-	if (param == NULL)
+	if (game == NULL)
 		return;
-	if (param->map.map)
+	if (game->map.map)
 	{
-		ft_free_tab((void **)(param->map.map));
-		param->map.map = NULL;
+		ft_free_tab((void **)(game->map.map));
+		game->map.map = NULL;
 	}
-	if (param->col_text.NOtext)
-		free(param->col_text.NOtext);
-	if (param->col_text.SOtext)
-		free(param->col_text.SOtext);
-	if (param->col_text.WEtext)
-		free(param->col_text.WEtext);
-	if (param->col_text.EAtext)
-		free(param->col_text.EAtext);
+	if (game->col_text.NOtext)
+		free(game->col_text.NOtext);
+	if (game->col_text.SOtext)
+		free(game->col_text.SOtext);
+	if (game->col_text.WEtext)
+		free(game->col_text.WEtext);
+	if (game->col_text.EAtext)
+		free(game->col_text.EAtext);
 }

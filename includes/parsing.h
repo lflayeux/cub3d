@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:16 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/20 14:05:39 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/23 11:44:27 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool		is_texture_ok(char *texture);
 // ============ MAP ============
 // =============================
 
-int check_map(char *file, t_params *param);
+int check_map(char *file, t_game *game);
 int is_line_empty(char *line);
 void go_to_map_start(int fd, char **line, t_col_text *col_text);
 void	check_map_char(char c, t_map *map);
@@ -61,8 +61,8 @@ int init_map(t_map *map);
 // =========== INIT ============
 // =============================
 
-int			init(t_params *param, char *map);
-int			parsing_file_cub(t_params *param, char *map);
+int			init(t_game *game, char *map);
+int			parsing_file_cub(t_game *game, char *map);
 int			is_file_cub(char *map);
 
 #endif

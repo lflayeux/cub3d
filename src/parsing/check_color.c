@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 19:40:22 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/20 16:02:33 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/23 11:44:27 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,6 @@ bool    is_color(char *line, t_col_text *col_text)
 		}
 	}
 	// else if( line[i] != "F" || line[i] != "C" || line[i] != " ")
-	//     return (printf("Error wrong parameter for color"),1);
+	//     return (printf("Error wrong gameeter for color"),1);
 	return (FALSE);
 }

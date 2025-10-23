@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:48:09 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/22 15:43:23 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/23 11:43:31 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,12 @@ typedef struct s_player
 // =========== GLOBAL ==========
 // =============================
 
-typedef struct	s_params
+typedef struct	s_game
 {
 	t_map		map;
 	t_col_text	col_text;
 	t_mlx		mlx;
 	t_player	player;
-} t_params;
+} t_game;
 
 # endif

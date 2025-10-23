@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:13:17 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/22 16:57:14 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/23 14:32:14 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,11 @@ void draw_player(t_mlx * mlx, t_player *p)
 		i++;
 	}
 }
-void	draw_ray_on_mini_map(t_map *map, t_player *player, t_mlx *mlx);
+void	draw_ray_on_mini_map(t_game *game, t_map *map, t_player *player);
 
-void mini_map(t_params *param)
+void mini_map(t_game *game)
 {
-	draw_map(&param->mlx, &param->map);
-	draw_player(&param->mlx, &param->player);
-	draw_ray_on_mini_map(&param->map, &param->player, &param->mlx);
+	draw_map(&game->mlx, &game->map);
+	draw_player(&game->mlx, &game->player);
+	draw_ray_on_mini_map(game, &game->map, &game->player);
 }

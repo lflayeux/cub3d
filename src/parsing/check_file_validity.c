@@ -123,14 +123,14 @@ int check_first_elems(t_col_text *col_text, int fd)
 	return (SUCCESS);
 }
 
-int parsing_file_cub(t_params *param, char *map)
+int parsing_file_cub(t_game *game, char *map)
 {
 	int fd;
 
 	fd = open(map,O_RDONLY);
 	if (fd == ERROR)
 		return (print_parsing_error(OPEN_FILE), ERROR);
-	if (check_first_elems(&(param->col_text), fd) == ERROR)
+	if (check_first_elems(&(game->col_text), fd) == ERROR)
 		return (ERROR);
 	close(fd);
 	return (SUCCESS);

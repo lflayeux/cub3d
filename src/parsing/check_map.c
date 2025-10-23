@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 14:28:58 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/20 12:41:26 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/23 11:44:27 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,29 +80,29 @@ int is_map_valid(t_map *map)
 	return (TRUE);
 }
 
-int check_map(char *file, t_params *param)
+int check_map(char *file, t_game *game)
 {
 	int fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (print_parsing_error(OPEN_FILE), ERROR);
-	get_height_and_width(fd, &(param->map), &(param->col_text));
+	get_height_and_width(fd, &(game->map), &(game->col_text));
 	reset_gnl(fd);
 	close(fd);
-	if (param->map.height == 0 || param->map.width == 0)
+	if (game->map.height == 0 || game->map.width == 0)
 		return (ERROR);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (print_parsing_error(OPEN_FILE), ERROR);
-	if (init_map(&(param->map)) == ERROR)
+	if (init_map(&(game->map)) == ERROR)
 		return (ERROR);
-	stock_map(fd, &(param->map), &(param->col_text));
+	stock_map(fd, &(game->map), &(game->col_text));
 	reset_gnl(fd);
 	close(fd);
-	if (is_map_closed(&(param->map)) == FALSE)
+	if (is_map_closed(&(game->map)) == FALSE)
 		return (ERROR);
-	if (is_map_valid(&(param->map)) == FALSE)
+	if (is_map_valid(&(game->map)) == FALSE)
 		return (ERROR);
 	return (SUCCESS);
 }

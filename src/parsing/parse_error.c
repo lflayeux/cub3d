@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 18:58:59 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/20 11:27:25 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/23 11:44:27 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_file_error(void)
 
 void print_col_text_error(void)
 {
-	printf(ONRED "\nError: COLOR/TEXTURE PARAMETERS" RESET);
+	printf(ONRED "\nError: COLOR/TEXTURE gameETERS" RESET);
 	printf(BRED "\n\nColor must be formatted like this:\n");
 	printf("- F R,G,B (F for Floor)\n");
 	printf("- C R,G,B (C for Ceiling)\n");
