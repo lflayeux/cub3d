@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:46:56 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/23 11:44:27 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/23 16:06:44 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int main(int argc, char **argv)
 	init_player(&game);
 	mini_map(&game);
 	mlx_put_image_to_window(game.mlx.mlx, game.mlx.win, game.mlx.img.img, 0, 0);
+	setup_hooks(&game);
 	mlx_loop(game.mlx.mlx);
 	destroy_mlx(&game);
 	free_game(&game);

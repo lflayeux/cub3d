@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:54 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/23 14:58:07 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/23 17:47:19 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@
 # define M_PI 3.14159265358979323846
 # define WIDTH 1920
 # define HEIGHT 1080
+# define W 0x77
+# define A 0x61
+# define S 0x73
+# define D 0x64
+# define LEFT_ARROW 0xff51
+# define RIGHT_ARROW 0xff53
 
 enum parsing_error
 {
@@ -85,10 +91,10 @@ void mini_map(t_game *game);
 // =========== UTILS ===========
 // =============================
 
-void destroy_mlx(t_game *game);
-void free_game(t_game *game);
+void	destroy_mlx(t_game *game);
+void	free_game(t_game *game);
 void	my_mlx_pixel_put(t_data img, int x, int y, int color);
-
-
+int		game_loop(t_game *game);
+void	setup_hooks(t_game *game);
 
 #endif

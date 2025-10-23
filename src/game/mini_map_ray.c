@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:29:10 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/23 15:04:36 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/23 15:34:38 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ void draw_ray_on_mini_map(t_game *game, t_map *map, t_player *player)
         dest_x = player->pos_x;
         dest_y = player->pos_y;
 		while (dest_x >= 0 && dest_y >= 0
-		       && (int)dest_y < map->height && (int)dest_x < map->width)
+		       && (int)dest_y < map->height && (int)dest_x < map->width 
+				&& map->map[(int)dest_y][(int)dest_x] != '1')
         {
             dest_x += ray_dir_x * 0.05;
             dest_y += ray_dir_y * 0.05;
-			my_mlx_pixel_put();
         }
-		// digital_differential_analyzer(game, dest_x * TILE_SIZE, dest_y * TILE_SIZE, 0xFFFF00);
+		digital_differential_analyzer(game, dest_x * TILE_SIZE, dest_y * TILE_SIZE, 0xFFFF00);
         i++;
     }
 }

@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:12:25 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/23 11:44:27 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/23 16:03:55 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void destroy_mlx(t_game *game)
 		mlx_destroy_image(game->mlx.mlx, game->mlx.img.img);
 	if (game->mlx.win)
 		mlx_destroy_window(game->mlx.mlx, game->mlx.win);
+	if (game->mlx.mlx)
+	mlx_destroy_display(game->mlx.mlx);
 }
 
 void free_game(t_game *game)

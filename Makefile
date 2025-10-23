@@ -23,6 +23,7 @@ SRC =	src/main.c \
 		src/game/mini_map_ray.c \
 		src/utils/free.c \
 		src/utils/mlx_utils.c \
+		src/utils/mlx_key.c \
 
 # ======================
 # ======= COLOR ========
