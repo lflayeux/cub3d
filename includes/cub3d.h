@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:54 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/23 17:47:19 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/24 14:53:14 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define SUCCESS 0
 # define TRUE 1
 # define FALSE 0
-# define TILE_SIZE 30
+# define TILE_SIZE 15
 # define FOV 66
 # define M_PI 3.14159265358979323846
 # define WIDTH 1920
@@ -58,6 +58,8 @@
 # define D 0x64
 # define LEFT_ARROW 0xff51
 # define RIGHT_ARROW 0xff53
+# define MOVE_SPEED 0.5
+# define COLLISION_MARGIN 0.1
 
 enum parsing_error
 {

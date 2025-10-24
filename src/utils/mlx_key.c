@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_handle_direction.c                             :+:      :+:    :+:   */
+/*   mlx_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:35:11 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/23 17:46:05 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/24 14:58:46 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,72 @@ void rotate_player(t_player *player, float angle)
     player->plane_y = old_plane_x * sin(angle) + player->plane_y * cos(angle);
 }
 
+void	move_forward(t_game *game)
+{
+	float new_x;
+	float new_y;
+	
+	new_x = game->player.pos_x + game->player.dir_x * MOVE_SPEED;
+	new_y = game->player.pos_y + game->player.dir_y * MOVE_SPEED;
+    if (game->map.map[(int)new_y][(int)new_x] != '1')
+    {
+        game->player.pos_x = new_x;
+        game->player.pos_y = new_y;
+    }
+}
+
+void	move_backward(t_game *game)
+{
+	float new_x;
+	float new_y;
+	
+	new_x = game->player.pos_x - game->player.dir_x * MOVE_SPEED;
+	new_y = game->player.pos_y - game->player.dir_y * MOVE_SPEED;
+    if (game->map.map[(int)new_y][(int)new_x] != '1')
+    {
+        game->player.pos_x = new_x;
+        game->player.pos_y = new_y;
+    }
+}
+
+void	move_left(t_game *game)
+{
+	float new_x;
+	float new_y;
+	
+	new_x = game->player.pos_x - game->player.plane_x * MOVE_SPEED;
+	new_y = game->player.pos_y - game->player.plane_y * MOVE_SPEED;
+    if (game->map.map[(int)new_y][(int)new_x] != '1')
+    {
+        game->player.pos_x = new_x;
+        game->player.pos_y = new_y;
+    }
+}
+
+void	move_right(t_game *game)
+{
+	float new_x;
+	float new_y;
+	
+	new_x = game->player.pos_x + game->player.plane_x * MOVE_SPEED;
+	new_y = game->player.pos_y + game->player.plane_y * MOVE_SPEED;
+    if (game->map.map[(int)new_y][(int)new_x] != '1')
+    {
+        game->player.pos_x = new_x;
+        game->player.pos_y = new_y;
+    }
+}
+
 int handle_direction(int keycode, t_game *game)
 {
 	if (keycode == W)
-		game->player.pos_y -= 0.5;
+		move_forward(game);
 	if (keycode == A)
-		game->player.pos_x -= 0.5;
+		move_left(game);
 	if (keycode == S)
-		game->player.pos_y += 0.5;
+		move_backward(game);
 	if (keycode == D)
-		game->player.pos_x += 0.5;
+		move_right(game);
 	if (keycode == LEFT_ARROW)
 		rotate_player(&game->player, -0.1);	
 	if (keycode == RIGHT_ARROW)
