@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:13:17 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/23 14:32:14 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/27 11:45:24 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void draw_map(t_mlx *mlx, t_map *map)
 	while (y < map->height)
 	{
 		x = 0;
-		while (x < map->width)
+		while (x < map->width - 1)
 		{
 			if (map->map[y][x] == '1')
 				draw_tile(mlx, x, y, 0x3B2077);
@@ -95,11 +95,10 @@ void draw_player(t_mlx * mlx, t_player *p)
 		i++;
 	}
 }
-void	draw_ray_on_mini_map(t_game *game, t_map *map, t_player *player);
 
 void mini_map(t_game *game)
 {
 	draw_map(&game->mlx, &game->map);
 	draw_player(&game->mlx, &game->player);
-	draw_ray_on_mini_map(game, &game->map, &game->player);
+	draw_ray_on_mini_map(game);
 }

@@ -19,6 +19,8 @@ SRC =	src/main.c \
 		src/parsing/init.c \
 		src/parsing/parse_error.c \
 		src/game/init_struct_game.c \
+		src/game/render.c \
+		src/game/render_utils.c \
 		src/game/mini_map.c \
 		src/game/mini_map_ray.c \
 		src/utils/free.c \

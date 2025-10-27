@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:54 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/24 14:53:14 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/27 12:05:01 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@
 # define D 0x64
 # define LEFT_ARROW 0xff51
 # define RIGHT_ARROW 0xff53
-# define MOVE_SPEED 0.5
+# define MOVE_SPEED 0.2
 # define COLLISION_MARGIN 0.1
 
 enum parsing_error
@@ -85,18 +85,15 @@ enum parsing_error
 // ============ GAME ===========
 // =============================
 
-void init_player(t_game *game);
-int init_mlx(t_game *game);
-void mini_map(t_game *game);
+# include "game.h"
 
 // =============================
 // =========== UTILS ===========
 // =============================
-
+int		init_mlx(t_game *game);
 void	destroy_mlx(t_game *game);
 void	free_game(t_game *game);
-void	my_mlx_pixel_put(t_data img, int x, int y, int color);
-int		game_loop(t_game *game);
 void	setup_hooks(t_game *game);
+
 
 #endif

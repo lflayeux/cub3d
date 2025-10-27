@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:46:56 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/23 16:06:44 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/27 12:01:36 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,28 @@ int check_and_init(t_game *game, char *map)
 	return (SUCCESS);
 }
 
+void	cub3d_game(t_game *game)
+{
+	render_3d(game);
+	mini_map(game);
+}
+int game_loop(t_game *game)
+{
+	if (game->mlx.img.img)
+		mlx_destroy_image(game->mlx.mlx, game->mlx.img.img);
+	game->mlx.img.img = mlx_new_image(game->mlx.mlx, WIDTH, HEIGHT);
+	if (!game->mlx.img.img)
+		return (ERROR);
+	game->mlx.img.addr = mlx_get_data_addr(game->mlx.img.img, &game->mlx.img.bits_per_pixel, &game->mlx.img.line_length,&game->mlx.img.endian);
+	if (!game->mlx.img.addr)
+		return (ERROR);
+	cub3d_game(game);
+	mlx_put_image_to_window(game->mlx.mlx, game->mlx.win, game->mlx.img.img, 0, 0);
+	setup_hooks(game);
+	mlx_loop(game->mlx.mlx);
+	return (SUCCESS);
+}
+
 int main(int argc, char **argv)
 {
 	t_game	game;
@@ -63,14 +85,11 @@ int main(int argc, char **argv)
 
 	// ======= JUSTE POUR LES TESTS A SUPPRIMER APRES ========
 	print_parse_result(&game);
-	// ===================== MINI MAP =====================================
+	// ===================== GAME =====================================
 	if (init_mlx(&game) == ERROR)
 		return (destroy_mlx(&game), free_game(&game), ERROR);
 	init_player(&game);
-	mini_map(&game);
-	mlx_put_image_to_window(game.mlx.mlx, game.mlx.win, game.mlx.img.img, 0, 0);
-	setup_hooks(&game);
-	mlx_loop(game.mlx.mlx);
+	game_loop(&game);
 	destroy_mlx(&game);
 	free_game(&game);
 	return (SUCCESS);

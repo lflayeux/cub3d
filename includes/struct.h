@@ -6,12 +6,37 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:48:09 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/23 11:43:31 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/25 20:02:56 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+// =============================
+// ========= RENDER_3D =========
+// =============================
+
+typedef struct s_render_3d
+{
+	int color;
+	float camera;
+	float ray_dir_x;
+	float ray_dir_y;
+	int map_x;
+	int map_y;
+	float delta_dist_x;
+	float delta_dist_y;
+	float side_dist_x;
+	float side_dist_y;
+	int step_x;
+	int step_y;
+	int side;
+	float perp_wall_dist;
+	int line_height;
+	int draw_start;
+	int draw_end;
+}	t_render_3d;
 
 // =============================
 // ============ MAP ============

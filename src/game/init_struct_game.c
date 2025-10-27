@@ -6,7 +6,7 @@
 /*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:46:00 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/23 16:10:07 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/27 11:48:40 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,6 @@ int init_mlx(t_game *game)
 		return (ERROR);
 	game->mlx.win = mlx_new_window(game->mlx.mlx, WIDTH, HEIGHT, "cub3d");
 	if (!game->mlx.win)
-		return (ERROR);
-	game->mlx.img.img = mlx_new_image(game->mlx.mlx, WIDTH, HEIGHT);
-	if (!game->mlx.img.img)
-		return (ERROR);
-	game->mlx.img.addr = mlx_get_data_addr(game->mlx.img.img,
-		&game->mlx.img.bits_per_pixel, &game->mlx.img.line_length,&game->mlx.img.endian);
-	if (!game->mlx.img.addr)
 		return (ERROR);
 	return (SUCCESS);
 }

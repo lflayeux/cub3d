@@ -57,4 +57,37 @@ __Display and rendering__:
 - Using minilibx is strongly recommended:
 	- You can use ```mlx_pixel_put``` for simple rendering or ```mlx_new_image``` for faster rendering.
 
-## 
+## RENDERING
+
+- __First steps__:
+
+We need to get first **for each x** the **direction** vector of the rayon associated to x.
+
+```
+	render->ray_dir_x = player->dir_x + player->plane_x * render->camera;
+	render->ray_dir_y = player->dir_y + player->plane_y * render->camera;
+```
+`render->camera` → the range from -1 to 1 of the ray position
+```
+ -1			0			+1
+ |----------|-----------|
+left       center     right
+```
+*Example* :
+```
+WIDTH = 800;
+x = 0     → camera = -1
+x = 400   → camera = 0
+x = 799   → camera ≈ +1
+```
+
+`player->dir` → the direction the player is currently facing (a normalized 2D vector).
+
+`player->plane` → a vector perpendicular to the direction, defining the field of view width.
+
+Now that we have the direction of the ray, we need to determine where it hits a wall.
+The main challenge is that the ray doesn’t move straight along the grid — it travels diagonally across it.
+So, to detect a collision, we need to check each grid cell the ray crosses until it intersects with a wall.
+
+To do so we will use in our Part 2 the Digital Differential Analysis (DDA).
+But to use it we will need 
