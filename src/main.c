@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:46:56 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/27 12:01:36 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/27 14:14:46 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,18 @@ void print_parse_result(t_game *game)
 
 int check_and_init(t_game *game, char *map)
 {
+	// to do: ajout d'un print error parse
 	if (is_file_cub(map) == FALSE)
 		return (print_parsing_error(OPEN_FILE), ERROR);
 	if (parsing_file_cub(game, map) == ERROR)
 		return (ERROR);
 	if (check_map(map, game) == ERROR)
 		return (print_parsing_error(MAP), ERROR);
+	if (init_mlx(game) == ERROR)
+		return (destroy_mlx(game), ERROR);
+	if (load_textures(game)==ERROR)
+		return (destroy_mlx(game), ERROR);
+	init_player(game);
 	return (SUCCESS);
 }
 
@@ -86,9 +92,6 @@ int main(int argc, char **argv)
 	// ======= JUSTE POUR LES TESTS A SUPPRIMER APRES ========
 	print_parse_result(&game);
 	// ===================== GAME =====================================
-	if (init_mlx(&game) == ERROR)
-		return (destroy_mlx(&game), free_game(&game), ERROR);
-	init_player(&game);
 	game_loop(&game);
 	destroy_mlx(&game);
 	free_game(&game);

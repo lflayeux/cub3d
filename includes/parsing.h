@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:16 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/23 11:44:27 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/27 14:05:24 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int			skipspace(char *line, int i);
 // ========== TEXTURES =========
 // =============================
 
+int         load_textures(t_game *game);
 bool		is_texture(char *line, t_col_text *col_text);
 bool		is_texture_ok(char *texture);
 

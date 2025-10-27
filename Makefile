@@ -26,6 +26,7 @@ SRC =	src/main.c \
 		src/utils/free.c \
 		src/utils/mlx_utils.c \
 		src/utils/mlx_key.c \
+		src/parsing/texture_loading.c\
 
 # ======================
 # ======= COLOR ========

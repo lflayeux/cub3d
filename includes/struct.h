@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:48:09 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/25 20:02:56 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/27 15:27:55 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,27 @@ typedef struct s_col_text
 	int nb_line;
 } t_col_text;
 
+typedef struct s_texture
+{
+	void	*img;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_texture;
+
+typedef struct repo_text
+{
+	unsigned int	floor_color;
+	unsigned int	ceiling_color;
+	t_texture		north;
+	t_texture		south;
+	t_texture		west;
+	t_texture		east;
+}	t_repo_text;
+
 // =============================
 // ========== MINILIBX =========
 // =============================
@@ -129,6 +150,7 @@ typedef struct	s_game
 	t_col_text	col_text;
 	t_mlx		mlx;
 	t_player	player;
+	t_repo_text textures;
 } t_game;
 
 # endif

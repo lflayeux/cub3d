@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:50:21 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/27 11:56:23 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/27 15:33:16 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void draw_vertical_line(t_game *game, t_render_3d *render, int x)
 	y = 0;
     while (y < render->draw_start - 1)
 	{
-        my_mlx_pixel_put(game->mlx.img, x, y, 0x87CEFA);
+        my_mlx_pixel_put(game->mlx.img, x, y, game->textures.ceiling_color);
 		y++;
 	}
 	while (y < render->draw_end)
@@ -29,7 +29,7 @@ void draw_vertical_line(t_game *game, t_render_3d *render, int x)
 	}
 	while (y < HEIGHT)
 	{
-        my_mlx_pixel_put(game->mlx.img, x, y, game->col_text.Fcolor);
+        my_mlx_pixel_put(game->mlx.img, x, y, game->textures.floor_color);
 		y++;
 	}
 }

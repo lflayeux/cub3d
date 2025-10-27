@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:54 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/27 12:05:01 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/27 14:08:57 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@
 # define RIGHT_ARROW 0xff53
 # define MOVE_SPEED 0.2
 # define COLLISION_MARGIN 0.1
+# define TEXT_WIDTH 64
+# define TEXT_HEIGHT 64
+
 
 enum parsing_error
 {
