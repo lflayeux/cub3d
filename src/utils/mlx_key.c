@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:35:11 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/24 14:58:46 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/28 15:33:10 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,58 +25,91 @@ void rotate_player(t_player *player, float angle)
     player->plane_y = old_plane_x * sin(angle) + player->plane_y * cos(angle);
 }
 
-void	move_forward(t_game *game)
+void move_forward(t_game *game)
 {
 	float new_x;
 	float new_y;
 	
-	new_x = game->player.pos_x + game->player.dir_x * MOVE_SPEED;
+	new_x= game->player.pos_x + game->player.dir_x * MOVE_SPEED;
 	new_y = game->player.pos_y + game->player.dir_y * MOVE_SPEED;
-    if (game->map.map[(int)new_y][(int)new_x] != '1')
-    {
-        game->player.pos_x = new_x;
-        game->player.pos_y = new_y;
-    }
+	
+	if (game->map.map[(int)game->player.pos_y][(int)new_x] != '1' &&
+		game->map.map[(int)(game->player.pos_y + COLLISION_MARGIN)][(int)new_x] != '1' &&
+		game->map.map[(int)(game->player.pos_y - COLLISION_MARGIN)][(int)new_x] != '1')
+	{
+		game->player.pos_x = new_x;
+	}
+	if (game->map.map[(int)new_y][(int)game->player.pos_x] != '1' &&
+		game->map.map[(int)new_y][(int)(game->player.pos_x + COLLISION_MARGIN)] != '1' &&
+		game->map.map[(int)new_y][(int)(game->player.pos_x - COLLISION_MARGIN)] != '1')
+	{
+		game->player.pos_y = new_y;
+	}
 }
 
-void	move_backward(t_game *game)
+void move_backward(t_game *game)
 {
-	float new_x;
-	float new_y;
+    float new_x;
+    float new_y;
 	
 	new_x = game->player.pos_x - game->player.dir_x * MOVE_SPEED;
 	new_y = game->player.pos_y - game->player.dir_y * MOVE_SPEED;
-    if (game->map.map[(int)new_y][(int)new_x] != '1')
+    if (game->map.map[(int)game->player.pos_y][(int)new_x] != '1' &&
+        game->map.map[(int)(game->player.pos_y + COLLISION_MARGIN)][(int)new_x] != '1' &&
+        game->map.map[(int)(game->player.pos_y - COLLISION_MARGIN)][(int)new_x] != '1')
     {
-        game->player.pos_x = new_x;
+		game->player.pos_x = new_x;
+    }
+    
+    if (game->map.map[(int)new_y][(int)game->player.pos_x] != '1' &&
+        game->map.map[(int)new_y][(int)(game->player.pos_x + COLLISION_MARGIN)] != '1' &&
+        game->map.map[(int)new_y][(int)(game->player.pos_x - COLLISION_MARGIN)] != '1')
+    {
         game->player.pos_y = new_y;
     }
 }
 
-void	move_left(t_game *game)
+void move_left(t_game *game)
 {
-	float new_x;
-	float new_y;
-	
+    float new_x;
+    float new_y;
+
 	new_x = game->player.pos_x - game->player.plane_x * MOVE_SPEED;
 	new_y = game->player.pos_y - game->player.plane_y * MOVE_SPEED;
-    if (game->map.map[(int)new_y][(int)new_x] != '1')
+    if (game->map.map[(int)game->player.pos_y][(int)new_x] != '1' &&
+        game->map.map[(int)(game->player.pos_y + COLLISION_MARGIN)][(int)new_x] != '1' &&
+        game->map.map[(int)(game->player.pos_y - COLLISION_MARGIN)][(int)new_x] != '1')
     {
         game->player.pos_x = new_x;
+    }
+    if (game->map.map[(int)new_y][(int)game->player.pos_x] != '1' &&
+        game->map.map[(int)new_y][(int)(game->player.pos_x + COLLISION_MARGIN)] != '1' &&
+        game->map.map[(int)new_y][(int)(game->player.pos_x - COLLISION_MARGIN)] != '1')
+    {
         game->player.pos_y = new_y;
     }
 }
 
-void	move_right(t_game *game)
+void move_right(t_game *game)
 {
-	float new_x;
-	float new_y;
-	
+    float new_x;
+    float new_y;
+
 	new_x = game->player.pos_x + game->player.plane_x * MOVE_SPEED;
 	new_y = game->player.pos_y + game->player.plane_y * MOVE_SPEED;
-    if (game->map.map[(int)new_y][(int)new_x] != '1')
+    // Vérifier collision X séparément
+    if (game->map.map[(int)game->player.pos_y][(int)new_x] != '1' &&
+        game->map.map[(int)(game->player.pos_y + COLLISION_MARGIN)][(int)new_x] != '1' &&
+        game->map.map[(int)(game->player.pos_y - COLLISION_MARGIN)][(int)new_x] != '1')
     {
         game->player.pos_x = new_x;
+    }
+    
+    // Vérifier collision Y séparément
+    if (game->map.map[(int)new_y][(int)game->player.pos_x] != '1' &&
+        game->map.map[(int)new_y][(int)(game->player.pos_x + COLLISION_MARGIN)] != '1' &&
+        game->map.map[(int)new_y][(int)(game->player.pos_x - COLLISION_MARGIN)] != '1')
+    {
         game->player.pos_y = new_y;
     }
 }

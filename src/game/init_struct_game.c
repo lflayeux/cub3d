@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct_game.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:46:00 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/27 11:48:40 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/28 17:53:22 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ int init_mlx(t_game *game)
 {
 	game->mlx.mlx = mlx_init();
 	if (!game->mlx.mlx)
-		return (ERROR);
+		return (ERROR );
 	game->mlx.win = mlx_new_window(game->mlx.mlx, WIDTH, HEIGHT, "cub3d");
 	if (!game->mlx.win)
+	{
 		return (ERROR);
+	}
 	return (SUCCESS);
 }
 

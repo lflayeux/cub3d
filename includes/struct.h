@@ -6,7 +6,7 @@
 /*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:48:09 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/27 15:27:55 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/27 17:17:50 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,22 @@
 // ========= RENDER_3D =========
 // =============================
 
+typedef struct s_texture
+{
+	void	*img;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_texture;
+
+
+
 typedef struct s_render_3d
 {
-	int color;
+	t_texture *texture;
 	float camera;
 	float ray_dir_x;
 	float ray_dir_y;
@@ -82,16 +95,7 @@ typedef struct s_col_text
 	int nb_line;
 } t_col_text;
 
-typedef struct s_texture
-{
-	void	*img;
-	char	*addr;
-	int		width;
-	int		height;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_texture;
+
 
 typedef struct repo_text
 {
