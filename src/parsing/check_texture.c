@@ -1,99 +1,75 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_texture.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/29 16:27:20 by frene             #+#    #+#             */
+/*   Updated: 2025/10/29 17:07:35 by frene            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-bool	is_texture_ok(char *texture)
+static int	get_texture(char *line, char **texture)
 {
-	int fd;
-	int len;
-	
-	if (!texture)
-		return (FALSE);
-	len = strlen(texture);
-	if (len < 4)
-		return (FALSE);
-	if (strcmp(texture + len - 4, ".xpm") != 0)
-		return (FALSE);
-	fd = open(texture, O_RDONLY);
-	if (fd == -1)
-		return (FALSE);
-	//check si le fichier n'est pas corrompue avec minlx image
-	// je check si le document est remplie? je m'assure qu'il fonctionne?
-	// check d'une partie specifique du fichier
-	close(fd);
-	return (TRUE);
-}
-int	get_texture(char *line, char **texture)
-{
-	int i;
-	int start;
-	int len;
-	int y;
-	
-	start = 0;
+	int	index;
+	int	len;
+	int	y;
+
 	y = 0;
-	i = 0;
-	i = skipspace(line, i);
-	while(line[i] && (line[i] != ' ' && line[i] != '\t'))
-		i++;
-	i = skipspace(line, i);
-	start = i;
-	while(line[i] && line[i] != '\n' && line[i] != '\r')
-		i++;
-	len = i - start;
-	*texture = malloc(len + 1);
-	if (!(*texture))
+	index = 0;
+	index = find_texture_start(line);
+	len = calculate_texture_length(line, index);
+	*texture = allocate_and_copy(line, index, len);
+	if (!(texture))
 		return (ERROR);
-	while(y < len)
-	{
-		(*texture)[y] = line[start + y];
-		y++;
-	}
-	(*texture)[y] = '\0';
 	if (is_texture_ok(*texture) == FALSE)
+	{
+		free(*texture);
+		*texture = NULL;
 		return (ERROR);
+	}
 	return (SUCCESS);
 }
 
-
-bool	check_texture_name(char *line)
+static bool	check_texture_name(char *line)
 {
 	int	i;
 	int	y;
-	
+
 	i = 0;
 	y = 0;
-		while (line[i] && (line[i]==' ' || line[i]=='\t'))
+	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
-	while(line[i+y] && (line[i+y] != ' ' && line[i+y]!= '\t'))
+	while (line[i + y] && (line[i + y] != ' ' && line[i + y] != '\t'))
 		y++;
 	if (y > 2)
 		return (FALSE);
 	return (TRUE);
 }
 
-
-int	fill_textures(char *line, char *name, t_col_text *col_text)
+static int	handle_texture_type(char *line, char *name, t_col_text *col_text)
 {
-	int result;
-	
-	result = 0;
-	if (!check_texture_name(line))
-		return (ERROR);
-	if (strcmp(name, "NO")== 0 && col_text->no_fill != TRUE )
+	int	result;
+
+	if (strcmp(name, "NO") == 0 && col_text->no_fill != TRUE)
 	{
 		result = get_texture(line, &(col_text->no_text));
 		col_text->no_fill = TRUE;
 	}
-	else if (strcmp(name, "SO")== 0 && col_text->so_fill != TRUE)
+	else if (strcmp(name, "SO") == 0 && col_text->so_fill != TRUE)
 	{
 		result = get_texture(line, &(col_text->so_text));
 		col_text->so_fill = TRUE;
 	}
-	else if (strcmp(name, "EA")== 0 && col_text->ea_fill != TRUE)
+	else if (strcmp(name, "EA") == 0 && col_text->ea_fill != TRUE)
 	{
 		result = get_texture(line, &(col_text->ea_text));
 		col_text->ea_fill = TRUE;
 	}
-	else if (strcmp(name, "WE")== 0 && col_text->we_fill != TRUE)
+	else if (strcmp(name, "WE") == 0 && col_text->we_fill != TRUE)
 	{
 		result = get_texture(line, &(col_text->we_text));
 		col_text->we_fill = TRUE;
@@ -103,13 +79,21 @@ int	fill_textures(char *line, char *name, t_col_text *col_text)
 	return (result);
 }
 
+static int	fill_textures(char *line, char *name, t_col_text *col_text)
+{
+	if (!check_texture_name(line))
+		return (ERROR);
+	return (handle_texture_type(line, name, col_text));
+}
 
 bool	is_texture(char *line, t_col_text *col_text)
 {
-	int i = 0;
-	int y = 0;
+	int		i;
+	int		y;
 	char	name[3];
 
+	i = 0;
+	y = 0;
 	i = skipspace(line, i);
 	while (line[i] && line[i] != ' ' && line[i] != '\t' && y < 2)
 	{
@@ -121,10 +105,10 @@ bool	is_texture(char *line, t_col_text *col_text)
 	if (y == 2)
 	{
 		if (fill_textures(line, name, col_text) == ERROR)
-			return(FALSE);
+			return (FALSE);
 		return (TRUE);
 	}
-	else 
+	else
 		return (FALSE);
 	return (TRUE);
 }

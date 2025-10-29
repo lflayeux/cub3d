@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 14:28:58 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/23 11:44:27 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/29 17:16:14 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void stock_map(int fd, t_map *map, t_col_text *col_text)
+void	stock_map(int fd, t_map *map, t_col_text *col_text)
 {
-	char *line;
-	int i;
+	char	*line;
+	int		i;
 
 	line = NULL;
 	i = 0;
@@ -31,13 +31,12 @@ void stock_map(int fd, t_map *map, t_col_text *col_text)
 	}
 	free(line);
 }
-// Peut etre le mettre dans init et pas dans check
-// check map utils
-void get_height_and_width(int fd, t_map *map, t_col_text *col_text)
+
+void	get_height_and_width(int fd, t_map *map, t_col_text *col_text)
 {
-	int width;
-	int height;
-	char *line;
+	int		width;
+	int		height;
+	char	*line;
 
 	width = 0;
 	height = 0;
@@ -52,7 +51,7 @@ void get_height_and_width(int fd, t_map *map, t_col_text *col_text)
 				width = ft_strlen(line);
 		}
 		else
-			break;
+			break ;
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -61,7 +60,7 @@ void get_height_and_width(int fd, t_map *map, t_col_text *col_text)
 	map->width = width;
 }
 
-int is_map_valid(t_map *map)
+int	is_map_valid(t_map *map)
 {
 	if (map->error == true)
 		return (FALSE);
@@ -80,9 +79,9 @@ int is_map_valid(t_map *map)
 	return (TRUE);
 }
 
-int check_map(char *file, t_game *game)
+int	check_map(char *file, t_game *game)
 {
-	int fd;
+	int	fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)

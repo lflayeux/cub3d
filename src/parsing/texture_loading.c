@@ -1,5 +1,16 @@
-#include "cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture_loading.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/29 17:09:07 by frene             #+#    #+#             */
+/*   Updated: 2025/10/29 17:11:05 by frene            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "cub3d.h"
 
 int	load_single_texture(void *mlx, char *path, t_texture *texture)
 {
@@ -7,24 +18,30 @@ int	load_single_texture(void *mlx, char *path, t_texture *texture)
 	texture->height = TEXT_HEIGHT;
 	if (!path || !texture)
 		return (ERROR);
-	texture->img = mlx_xpm_file_to_image(mlx, path, &texture->width, &texture->height);
+	texture->img = mlx_xpm_file_to_image(mlx, path,
+			&texture->width, &texture->height);
 	if (!texture->img)
 		return (ERROR);
-	texture->addr = mlx_get_data_addr( texture->img, &texture->bits_per_pixel, &texture->line_length, &texture->endian);
+	texture->addr = mlx_get_data_addr(texture->img, &texture->bits_per_pixel,
+			&texture->line_length, &texture->endian);
 	if (!texture->addr)
 		return (ERROR);
-	return (printf("one texture is correctly loaded\n"),SUCCESS);
+	return (printf("one texture is correctly loaded\n"), SUCCESS);
 }
 
-int load_textures(t_game *game)
+int	load_textures(t_game *game)
 {
-	if (load_single_texture(game->mlx.mlx, game->col_text.no_text, &game->textures.north) == ERROR)
+	if (load_single_texture(game->mlx.mlx, game->col_text.no_text,
+			&game->textures.north) == ERROR)
 		return (ERROR);
-	if (load_single_texture(game->mlx.mlx, game->col_text.so_text, &game->textures.south)== ERROR)
+	if (load_single_texture(game->mlx.mlx, game->col_text.so_text,
+			&game->textures.south) == ERROR)
 		return (ERROR);
-	if (load_single_texture(game->mlx.mlx, game->col_text.we_text, &game->textures.west)== ERROR)
+	if (load_single_texture(game->mlx.mlx, game->col_text.we_text,
+			&game->textures.west) == ERROR)
 		return (ERROR);
-	if (load_single_texture(game->mlx.mlx, game->col_text.ea_text, &game->textures.east)== ERROR)
+	if (load_single_texture(game->mlx.mlx, game->col_text.ea_text,
+			&game->textures.east) == ERROR)
 		return (ERROR);
-	return (printf("all the texture were correctly loaded\n"),SUCCESS);
+	return (printf("all the texture were correctly loaded\n"), SUCCESS);
 }

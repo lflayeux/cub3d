@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:13:51 by lflayeux          #+#    #+#             */
-/*   Updated: 2025/10/18 21:34:23 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/29 17:11:48 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int init_map(t_map *map)
+int	init_map(t_map *map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	map->map = ft_calloc(map->height + 1, sizeof(char *));

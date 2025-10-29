@@ -6,13 +6,13 @@
 /*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:26:01 by lflayeux          #+#    #+#             */
-/*   Updated: 2025/10/20 11:53:47 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/29 17:18:42 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void flood_fill(t_map *map, int x, int y, bool **visited)
+void	flood_fill(t_map *map, int x, int y, bool **visited)
 {
 	if (x < 0 || x >= map->width || y < 0 || y >= map->height)
 	{
@@ -30,8 +30,8 @@ void flood_fill(t_map *map, int x, int y, bool **visited)
 
 void	get_player_position(t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < map->height)
@@ -56,7 +56,7 @@ void	get_player_position(t_map *map)
 
 void	ft_free_bool(bool **to_free, int height)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < height)
@@ -67,11 +67,11 @@ void	ft_free_bool(bool **to_free, int height)
 	free(to_free);
 }
 
-int is_map_closed(t_map *map)
+int	is_map_closed(t_map *map)
 {
-	bool **visited;
-	int i;
-	
+	bool	**visited;
+	int		i;
+
 	get_player_position(map);
 	visited = ft_calloc(map->height, sizeof(bool *));
 	if (!visited)

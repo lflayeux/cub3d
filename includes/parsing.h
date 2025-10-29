@@ -6,7 +6,7 @@
 /*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:16 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/29 16:22:58 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/29 17:05:40 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // =========== ERROR ===========
 // =============================
 
-void		print_parsing_error(enum parsing_error error_type);
+void		print_parsing_error(enum e_parsing_error error_type);
 
 // =============================
 // =========== COLORS ==========
@@ -45,9 +45,10 @@ int			validate_color_value(int code);
 // ====== TEXTURE UTILS ========
 // =============================
 
-
-
-
+bool		is_texture_ok(char *texture);
+int			find_texture_start(char *line);
+int			calculate_texture_length(char *line, int index);
+char		*allocate_and_copy(char *line, int index, int len);
 
 // =============================
 // ========== TEXTURES =========
@@ -55,7 +56,6 @@ int			validate_color_value(int code);
 
 int			load_textures(t_game *game);
 bool		is_texture(char *line, t_col_text *col_text);
-bool		is_texture_ok(char *texture);
 
 // =============================
 // ============ MAP ============

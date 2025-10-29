@@ -15,6 +15,7 @@ SRC =	src/main.c \
 		src/parsing/check_map.c \
 		src/parsing/color_utils_1.c \
 		src/parsing/color_utils_2.c \
+		src/parsing/texture_utils.c \
 		src/parsing/check_map_utils.c \
 		src/parsing/check_map_algo.c \
 		src/parsing/init.c \

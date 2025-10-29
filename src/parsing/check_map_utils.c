@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 15:11:09 by lflayeux          #+#    #+#             */
-/*   Updated: 2025/10/19 21:26:13 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/29 17:20:05 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int is_line_empty(char *line)
+int	is_line_empty(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i])
@@ -26,9 +26,9 @@ int is_line_empty(char *line)
 	return (TRUE);
 }
 
-void go_to_map_start(int fd, char **line, t_col_text *col_text)
+void	go_to_map_start(int fd, char **line, t_col_text *col_text)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < col_text->nb_line + 1)
@@ -62,9 +62,9 @@ void	check_map_char(char c, t_map *map)
 		map->w += 1;
 }
 
-void fill_map_line(char *line, t_map *map, int i)
+void	fill_map_line(char *line, t_map *map, int i)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (line[j] && line[j] != '\n' && j < map->width)
@@ -82,9 +82,15 @@ void fill_map_line(char *line, t_map *map, int i)
 		j++;
 	}
 }
-void reset_gnl(int fd)
+
+void	reset_gnl(int fd)
 {
-	char *line;
-	while ((line = get_next_line(fd)))
+	char	*line;
+
+	line = get_next_line(fd);
+	while (line)
+	{
 		free(line);
+		line = get_next_line(fd);
+	}
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 18:58:59 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/29 16:40:17 by lflayeux         ###   ########.fr       */
+/*   Updated: 2025/10/29 17:25:10 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void print_use_error(void)
+void	print_use_error(void)
 {
 	printf(ONRED "\nError: USAGE: ./cub3d + file.cub" RESET);
 	printf("\n\nThe .cub file must contain:\n");
@@ -20,13 +20,14 @@ void print_use_error(void)
 	printf("- 2 colors (F for Floor, C for Ceiling)\n");
 	printf("- A valid map\n");
 }
+
 void	print_file_error(void)
 {
 	printf(ONRED "\nError: OPENING FILE" RESET);
 	printf("\n\nPlease check if the file exists and is accessible.\n");
 }
 
-void print_col_text_error(void)
+void	print_col_text_error(void)
 {
 	printf(ONRED "\nError: COLOR/TEXTURE PARAMETERS" RESET);
 	printf(BRED "\n\nColor must be formatted like this:\n");
@@ -41,7 +42,7 @@ void print_col_text_error(void)
 	printf("Only .xpm files are accepted for textures.\n" RESET);
 }
 
-void print_map_error(void)
+void	print_map_error(void)
 {
 	printf(ONRED "\nError: MAP" RESET);
 	printf("\n\nThe map must be closed and only contain valid characters:\n");
@@ -50,7 +51,8 @@ void print_map_error(void)
 	printf("- 'N', 'S', 'E', 'W' for player start positions\n");
 	printf("Ensure there is exactly one player start position.\n" RESET);
 }
-void print_parsing_error(enum e_parsing_error error_type)
+
+void	print_parsing_error(enum e_parsing_error error_type)
 {
 	if (error_type == USE)
 		print_use_error();
