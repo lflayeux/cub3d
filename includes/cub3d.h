@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:54 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/28 14:58:38 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/29 12:28:06 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@
 # define D 0x64
 # define LEFT_ARROW 0xff51
 # define RIGHT_ARROW 0xff53
+# define ESC 0xff1b
 # define MOVE_SPEED 0.2
 # define COLLISION_MARGIN 0.1
 # define TEXT_WIDTH 64
@@ -93,10 +94,8 @@ enum parsing_error
 // =============================
 // =========== UTILS ===========
 // =============================
-int		init_mlx(t_game *game);
-void	destroy_mlx(t_game *game);
-void	free_game(t_game *game);
-void	setup_hooks(t_game *game);
+
+# include "utils.h"
 
 
 #endif

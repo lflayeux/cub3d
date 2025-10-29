@@ -1,0 +1,12 @@
+F 89,255,12
+C 25,255,32
+D 25,33,98
+
+SO	./texture/textureSO.xpm
+NO	./texture/textureNO.xpm
+WE	./texture/textureWE.xpm
+EA	./texture/textureEA.xpm
+
+111
+1N1
+111

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:12:25 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/28 18:06:16 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/29 13:52:31 by pandemonium      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void	destroy_all_textures(t_game *game)
 void	destroy_mlx(t_game *game)
 {
 	destroy_all_textures(game);
+	
 	if (game->mlx.img.img)
-		mlx_destroy_image(&(game->mlx.mlx), game->mlx.img.img);
+		mlx_destroy_image(game->mlx.mlx, game->mlx.img.img);
 	if (game->mlx.win)
 		mlx_destroy_window(game->mlx.mlx, game->mlx.win);
 	if (game->mlx.mlx)

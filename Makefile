@@ -18,6 +18,7 @@ SRC =	src/main.c \
 		src/parsing/check_map_algo.c \
 		src/parsing/init.c \
 		src/parsing/parse_error.c \
+		src/parsing/texture_loading.c\
 		src/game/init_struct_game.c \
 		src/game/render.c \
 		src/game/render_utils.c \
@@ -26,7 +27,7 @@ SRC =	src/main.c \
 		src/utils/free.c \
 		src/utils/mlx_utils.c \
 		src/utils/mlx_key.c \
-		src/parsing/texture_loading.c\
+		src/utils/game_move.c \
 
 # ======================
 # ======= COLOR ========
