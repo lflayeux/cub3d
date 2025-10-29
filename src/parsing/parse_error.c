@@ -6,7 +6,7 @@
 /*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 18:58:59 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/29 17:25:10 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/29 18:47:59 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	print_col_text_error(void)
 	printf("- SO ./path_to_the_south_texture\n");
 	printf("- WE ./path_to_the_west_texture\n");
 	printf("- EA ./path_to_the_east_texture\n");
+	printf("- xpm files must be valid!\n");
 	printf("Only .xpm files are accepted for textures.\n" RESET);
 }
 

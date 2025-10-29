@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:48:09 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/29 16:43:09 by lflayeux         ###   ########.fr       */
+/*   Updated: 2025/10/29 19:27:10 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+// =============================
+// ============ ENUM ===========
+// =============================
+
+enum e_parsing_error
+{
+	USE,
+	OPEN_FILE,
+	COLOR_TEXTURE,
+	MAP,
+};
 
 // =============================
 // ========= RENDER_3D =========
@@ -149,6 +161,12 @@ typedef struct s_player
 	float	plane_y;
 	float	ray_x;
 	float	ray_y;
+	bool	w_press;
+	bool	a_press;
+	bool	s_press;
+	bool	d_press;
+	bool	left_arrow_press;
+	bool	right_arrow_press;
 }				t_player;
 
 // =============================

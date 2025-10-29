@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct_game.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:46:00 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/29 15:21:37 by lflayeux         ###   ########.fr       */
+/*   Updated: 2025/10/29 19:07:14 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,10 @@ void	init_player(t_game *game)
 	game->player.pos_y = game->map.player_y + 0.5;
 	init_player_north_and_south(game, dir);
 	init_player_east_and_west(game, dir);
+	game->player.w_press = false;
+	game->player.a_press = false;
+	game->player.s_press = false;
+	game->player.d_press = false;
+	game->player.left_arrow_press = false;
+	game->player.right_arrow_press = false;
 }

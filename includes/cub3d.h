@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/10/29 17:32:18 by frene            ###   ########.fr       */
+/*   Created: 2025/10/29 19:28:30 by frene             #+#    #+#             */
+/*   Updated: 2025/10/29 19:28:33 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -28,13 +27,6 @@
 # include <string.h>
 # include "../minilibx/mlx.h"
 
-enum e_parsing_error
-{
-	USE,
-	OPEN_FILE,
-	COLOR_TEXTURE,
-	MAP,
-};
 // =============================
 // =========== LIBFT ===========
 // =============================
@@ -91,17 +83,9 @@ enum e_parsing_error
 # define LEFT_ARROW 0xff51
 # define RIGHT_ARROW 0xff53
 # define ESC 0xff1b
-# define MOVE_SPEED 0.2
-# define COLLISION_MARGIN 0.1
+# define MOVE_SPEED 0.05
+# define COLLISION_MARGIN 0.05
 # define TEXT_WIDTH 64
 # define TEXT_HEIGHT 64
-
-// enum e_parsing_error
-// {
-// 	USE,
-// 	OPEN_FILE,
-// 	COLOR_TEXTURE,
-// 	MAP,
-// };
 
 #endif
