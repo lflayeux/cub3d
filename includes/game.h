@@ -3,25 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 12:01:56 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/27 12:04:44 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/29 15:05:21 by lflayeux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
-
 # define GAME_H
 
-#include "struct.h"
+# include "struct.h"
 
 // =============================
 // ========= MAIN PART =========
 // =============================
 void	cub3d_game(t_game *game);
 int		game_loop(t_game *game);
-
 
 // =============================
 // ==========  MINIMAP =========

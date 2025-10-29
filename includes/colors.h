@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:44:00 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/16 18:44:01 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/29 15:05:00 by lflayeux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	COLORS_H
+#ifndef COLORS_H
 # define COLORS_H
 
 // =============================

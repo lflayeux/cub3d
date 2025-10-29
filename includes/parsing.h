@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:16 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/27 14:05:24 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/29 15:07:05 by lflayeux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-#include "struct.h"
+# include "struct.h"
 
 // =============================
 // =========== ERROR ===========
 // =============================
 
-void print_parsing_error(enum parsing_error error_type);
+void		print_parsing_error(enum parsing_error error_type);
 
 // =============================
 // =========== COLORS ==========
@@ -40,7 +40,7 @@ int			skipspace(char *line, int i);
 // ========== TEXTURES =========
 // =============================
 
-int         load_textures(t_game *game);
+int			load_textures(t_game *game);
 bool		is_texture(char *line, t_col_text *col_text);
 bool		is_texture_ok(char *texture);
 
@@ -48,15 +48,15 @@ bool		is_texture_ok(char *texture);
 // ============ MAP ============
 // =============================
 
-int check_map(char *file, t_game *game);
-int is_line_empty(char *line);
-void go_to_map_start(int fd, char **line, t_col_text *col_text);
-void	check_map_char(char c, t_map *map);
-void fill_map_line(char *line, t_map *map, int i);
-void reset_gnl(int fd);
+int			check_map(char *file, t_game *game);
+int			is_line_empty(char *line);
+void		go_to_map_start(int fd, char **line, t_col_text *col_text);
+void		check_map_char(char c, t_map *map);
+void		fill_map_line(char *line, t_map *map, int i);
+void		reset_gnl(int fd);
 
-int is_map_closed(t_map *map);
-int init_map(t_map *map);
+int			is_map_closed(t_map *map);
+int			init_map(t_map *map);
 
 // =============================
 // =========== INIT ============
