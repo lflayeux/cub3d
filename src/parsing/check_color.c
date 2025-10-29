@@ -6,7 +6,7 @@
 /*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 19:40:22 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/28 18:14:55 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/29 15:26:53 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,17 @@ int fill_color(char *line, char color, t_col_text *col_text)
 	}
 	if (color == 'F' )
 	{
-		col_text->FR = temp_colors[0];
-		col_text->FG = temp_colors[1];
-		col_text->FB = temp_colors[2];
-		col_text->Fcolor++;
+		col_text->fr = temp_colors[0];
+		col_text->fg = temp_colors[1];
+		col_text->fb = temp_colors[2];
+		col_text->fcolor++;
 	}
 	else if (color == 'C')
 	{
-		col_text->CR = temp_colors[0];
-		col_text->CG = temp_colors[1];
-		col_text->CB = temp_colors[2];
-		col_text->Ccolor++;
+		col_text->cr = temp_colors[0];
+		col_text->cg = temp_colors[1];
+		col_text->cb = temp_colors[2];
+		col_text->ccolor++;
 	}
 	else
 		return (ERROR);
@@ -98,7 +98,7 @@ bool    is_color(char *line, t_col_text *col_text)
 	{
 		if (line[i] == 'F')
 		{
-			if (col_text->Fcolor != 0)
+			if (col_text->fcolor != 0)
 				return (FALSE);
 			if (fill_color(line, 'F', col_text) == ERROR)
 				return (FALSE);
@@ -106,7 +106,7 @@ bool    is_color(char *line, t_col_text *col_text)
 		}
 		if (line[i] == 'C')
 		{
-			if (col_text->Ccolor != 0)
+			if (col_text->ccolor != 0)
 				return(FALSE);
 			if (fill_color(line, 'C', col_text) == ERROR)
 				return (FALSE);

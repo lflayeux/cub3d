@@ -18,13 +18,13 @@ int	load_single_texture(void *mlx, char *path, t_texture *texture)
 
 int load_textures(t_game *game)
 {
-	if (load_single_texture(game->mlx.mlx, game->col_text.NOtext, &game->textures.north) == ERROR)
+	if (load_single_texture(game->mlx.mlx, game->col_text.no_text, &game->textures.north) == ERROR)
 		return (ERROR);
-	if (load_single_texture(game->mlx.mlx, game->col_text.SOtext, &game->textures.south)== ERROR)
+	if (load_single_texture(game->mlx.mlx, game->col_text.so_text, &game->textures.south)== ERROR)
 		return (ERROR);
-	if (load_single_texture(game->mlx.mlx, game->col_text.WEtext, &game->textures.west)== ERROR)
+	if (load_single_texture(game->mlx.mlx, game->col_text.we_text, &game->textures.west)== ERROR)
 		return (ERROR);
-	if (load_single_texture(game->mlx.mlx, game->col_text.EAtext, &game->textures.east)== ERROR)
+	if (load_single_texture(game->mlx.mlx, game->col_text.ea_text, &game->textures.east)== ERROR)
 		return (ERROR);
 	return (printf("all the texture were correctly loaded\n"),SUCCESS);
 }

@@ -125,11 +125,11 @@ int check_first_elems(t_col_text *col_text, int fd)
 
 void color_to_hexa(t_game *game)
 {
-	t_col_text *RGB;
+	t_col_text *rgb;
 
-	RGB = &game->col_text;
-	game->textures.floor_color = (unsigned int)(0 << 24 | RGB->FR << 16 | RGB->FG << 8 | RGB->FB);
-	game->textures.ceiling_color = (unsigned int)(0 << 24 | RGB->CR << 16 | RGB->CG << 8 | RGB->CB);
+	rgb = &game->col_text;
+	game->textures.floor_color = (unsigned int)(0 << 24 | rgb->fr << 16 | rgb->fg << 8 | rgb->fb);
+	game->textures.ceiling_color = (unsigned int)(0 << 24 | rgb->cr << 16 | rgb->cg << 8 | rgb->cb);
 }
 
 

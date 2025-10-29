@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:12:25 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/29 13:52:31 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/29 15:24:22 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void	free_game(t_game *game)
 		ft_free_tab((void **)(game->map.map));
 		game->map.map = NULL;
 	}
-	if (game->col_text.NOtext)
-		free(game->col_text.NOtext);
-	if (game->col_text.SOtext)
-		free(game->col_text.SOtext);
-	if (game->col_text.WEtext)
-		free(game->col_text.WEtext);
-	if (game->col_text.EAtext)
-		free(game->col_text.EAtext);
+	if (game->col_text.no_text)
+		free(game->col_text.no_text);
+	if (game->col_text.so_text)
+		free(game->col_text.so_text);
+	if (game->col_text.we_text)
+		free(game->col_text.we_text);
+	if (game->col_text.ea_text)
+		free(game->col_text.ea_text);
 }

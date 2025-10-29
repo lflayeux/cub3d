@@ -6,7 +6,7 @@
 /*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 15:46:56 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/28 17:47:34 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/29 15:26:01 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void print_parse_result(t_game *game)
 	int j;
 
 	printf(BCYAN "\n=============== COL_TEXT ========================\n\n" RESET);
-	printf("path: %s\n", game->col_text.NOtext );
-	printf("path: %s\n", game->col_text.SOtext );
-	printf("path: %s\n", game->col_text.WEtext );
-	printf("path: %s\n\n", game->col_text.EAtext );
-	printf("Fcolor: R%d | G%d | B%d\n", game->col_text.FR, game->col_text.FG, game->col_text.FB);
-	printf("Ccolor: R%d | G%d | B%d\n\n", game->col_text.CR, game->col_text.CG, game->col_text.CB);
+	printf("path: %s\n", game->col_text.no_text );
+	printf("path: %s\n", game->col_text.so_text );
+	printf("path: %s\n", game->col_text.we_text );
+	printf("path: %s\n\n", game->col_text.ea_text );
+	printf("Fcolor: R%d | G%d | B%d\n", game->col_text.fr, game->col_text.fg, game->col_text.fb);
+	printf("Ccolor: R%d | G%d | B%d\n\n", game->col_text.cr, game->col_text.cg, game->col_text.cb);
 	printf(BCYAN "\n=============== MAP ========================\n\n" RESET);
 	i = 0;
 	while (i < game->map.height)

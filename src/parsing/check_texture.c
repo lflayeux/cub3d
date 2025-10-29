@@ -52,34 +52,60 @@ int	get_texture(char *line, char **texture)
 		return (ERROR);
 	return (SUCCESS);
 }
+
+
+bool	check_texture_name(char *line)
+{
+	int	i;
+	int	y;
+	
+	i = 0;
+	y = 0;
+		while (line[i] && (line[i]==' ' || line[i]=='\t'))
+		i++;
+	while(line[i+y] && (line[i+y] != ' ' && line[i+y]!= '\t'))
+		y++;
+	if (y > 2)
+		return (FALSE);
+	return (TRUE);
+}
+
+
 int	fill_textures(char *line, char *name, t_col_text *col_text)
 {
-	int i;
-	int error;
+	int result;
 	
-	error = 0;
-	i = 0;
-	while (line[i] && (line[i]==' ' || line[i]=='\t'))
-		i++;
-	// i = skipspace(line, i);
-	if (strcmp(name, "NO")== 0)
-		error = get_texture(line, &(col_text->NOtext));
-	else if (strcmp(name, "SO")== 0)
-		error = get_texture(line, &(col_text->SOtext));
-	else if (strcmp(name, "EA")== 0)
-		error = get_texture(line, &(col_text->EAtext));
-	else if (strcmp(name, "WE")== 0)
-		error = get_texture(line, &(col_text->WEtext));
+	result = 0;
+	if (!check_texture_name(line))
+		return (ERROR);
+	if (strcmp(name, "NO")== 0 && col_text->no_fill != TRUE )
+	{
+		result = get_texture(line, &(col_text->no_text));
+		col_text->no_fill = TRUE;
+	}
+	else if (strcmp(name, "SO")== 0 && col_text->so_fill != TRUE)
+	{
+		result = get_texture(line, &(col_text->so_text));
+		col_text->so_fill = TRUE;
+	}
+	else if (strcmp(name, "EA")== 0 && col_text->ea_fill != TRUE)
+	{
+		result = get_texture(line, &(col_text->ea_text));
+		col_text->ea_fill = TRUE;
+	}
+	else if (strcmp(name, "WE")== 0 && col_text->we_fill != TRUE)
+	{
+		result = get_texture(line, &(col_text->we_text));
+		col_text->we_fill = TRUE;
+	}
 	else
 		return (ERROR);
-	return (error);
+	return (result);
 }
 
 
 bool	is_texture(char *line, t_col_text *col_text)
 {
-	//istextures doit s'assurer que la texture commence par NO, SO, EA, WE
-	// pour pouvoir remplir les textures
 	int i = 0;
 	int y = 0;
 	char	name[3];

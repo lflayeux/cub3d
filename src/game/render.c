@@ -6,7 +6,7 @@
 /*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:50:21 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/28 15:52:16 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/28 18:45:53 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,20 @@ void print_wall_line(t_game *game, t_render_3d *render, int x)
 void draw_vertical_line(t_game *game, t_render_3d *render, int x)
 {
 	int y;
+	int m;
 	
 	y = 0;
+	if ((x % 2) == 0)
+		m = 0;
+	else
+		m = 10;
     while (y < render->draw_start - 1)
 	{
-        my_mlx_pixel_put(game->mlx.img, x, y, game->textures.ceiling_color);
+		if ((m % 20) == 0)
+			my_mlx_pixel_put(game->mlx.img, x, y, 0x000000);
+		else
+			my_mlx_pixel_put(game->mlx.img, x, y, game->textures.ceiling_color);
+		m++;
 		y++;
 	}
 	print_wall_line(game, render, x);

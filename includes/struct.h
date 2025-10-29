@@ -6,7 +6,7 @@
 /*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:48:09 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/27 17:17:50 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/29 15:25:30 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,23 +76,28 @@ typedef struct s_map
 typedef struct s_col_text
 {
 	//code RGB
-	int		FR;
-	int		FG;
-	int		FB;
-	int		CR;
-	int		CG;
-	int		CB;
+	int		fr;
+	int		fg;
+	int		fb;
+	int		cr;
+	int		cg;
+	int		cb;
 	// bool check
-	int		Fcolor;
-	int		Ccolor;
+	int		fcolor;
+	int		ccolor;
 	//Texture name
-	char *NOtext;
-	char *SOtext;
-	char *EAtext;
-	char *WEtext;
+	char *no_text;
+	char *so_text;
+	char *ea_text;
+	char *we_text;
 	int nb_color;
 	int nb_text;
 	int nb_line;
+	// bool check
+	bool	no_fill;
+	bool	so_fill;
+	bool	ea_fill;
+	bool	we_fill;
 } t_col_text;
 
 
