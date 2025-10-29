@@ -6,12 +6,11 @@
 /*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:12:25 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/29 15:24:22 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/29 17:40:12 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 void	destroy_all_textures(t_game *game)
 {
@@ -37,11 +36,9 @@ void	destroy_all_textures(t_game *game)
 	}
 }
 
-
 void	destroy_mlx(t_game *game)
 {
 	destroy_all_textures(game);
-	
 	if (game->mlx.img.img)
 		mlx_destroy_image(game->mlx.mlx, game->mlx.img.img);
 	if (game->mlx.win)
@@ -52,10 +49,11 @@ void	destroy_mlx(t_game *game)
 		free(game->mlx.mlx);
 	}
 }
+
 void	free_game(t_game *game)
 {
 	if (game == NULL)
-		return;
+		return ;
 	if (game->map.map)
 	{
 		ft_free_tab((void **)(game->map.map));

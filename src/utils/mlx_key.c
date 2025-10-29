@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 15:35:11 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/29 13:47:26 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/29 17:44:18 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int handle_direction(int keycode, t_game *game)
+int	handle_direction(int keycode, t_game *game)
 {
 	if (keycode == W)
 		move_forward(game);
@@ -23,7 +23,7 @@ int handle_direction(int keycode, t_game *game)
 	if (keycode == D)
 		move_right(game);
 	if (keycode == LEFT_ARROW)
-		rotate_player(&game->player, -0.1);	
+		rotate_player(&game->player, -0.1);
 	if (keycode == RIGHT_ARROW)
 		rotate_player(&game->player, 0.1);
 	game_loop(game);
@@ -46,8 +46,9 @@ int	handle_key_press(int keycode, t_game *game)
 		handle_direction(keycode, game);
 	return (SUCCESS);
 }
+
 void	setup_hooks(t_game *game)
 {
 	mlx_hook(game->mlx.win, 17, 0, handle_exit, game);
-	mlx_hook(game->mlx.win, 2, 1L << 0, handle_key_press, game);	
+	mlx_hook(game->mlx.win, 2, 1L << 0, handle_key_press, game);
 }

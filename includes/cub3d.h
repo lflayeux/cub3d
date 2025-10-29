@@ -6,7 +6,7 @@
 /*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/10/29 17:26:09 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/29 17:32:18 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@
 # include <string.h>
 # include "../minilibx/mlx.h"
 
+enum e_parsing_error
+{
+	USE,
+	OPEN_FILE,
+	COLOR_TEXTURE,
+	MAP,
+};
 // =============================
 // =========== LIBFT ===========
 // =============================
@@ -89,12 +96,12 @@
 # define TEXT_WIDTH 64
 # define TEXT_HEIGHT 64
 
-enum e_parsing_error
-{
-	USE,
-	OPEN_FILE,
-	COLOR_TEXTURE,
-	MAP,
-};
+// enum e_parsing_error
+// {
+// 	USE,
+// 	OPEN_FILE,
+// 	COLOR_TEXTURE,
+// 	MAP,
+// };
 
 #endif
