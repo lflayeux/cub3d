@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 12:17:08 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/29 16:10:04 by frene            ###   ########.fr       */
+/*   Updated: 2025/10/29 16:48:43 by lflayeux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-#include "struct.h"
+# include "struct.h"
 
 // =============================
 // ============ INIT ===========

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pandemonium <pandemonium@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 18:58:59 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/28 12:45:10 by pandemonium      ###   ########.fr       */
+/*   Updated: 2025/10/29 16:40:17 by lflayeux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void print_map_error(void)
 	printf("- 'N', 'S', 'E', 'W' for player start positions\n");
 	printf("Ensure there is exactly one player start position.\n" RESET);
 }
-void print_parsing_error(enum parsing_error error_type)
+void print_parsing_error(enum e_parsing_error error_type)
 {
 	if (error_type == USE)
 		print_use_error();

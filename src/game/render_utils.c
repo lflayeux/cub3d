@@ -6,11 +6,23 @@
 /*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:56:11 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/29 15:43:21 by lflayeux         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:32:37 by lflayeux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	boundaries(t_texture *texture, int *x, int *y)
+{
+	if (*x < 0)
+		*x = 0;
+	if (*x >= texture->width)
+		*x = texture->width - 1;
+	if (*y < 0)
+		*y = 0;
+	if (*y >= texture->height)
+		*y = texture->height - 1;
+}
 
 void	digital_differential_analysis(t_render_3d *render, t_map *map)
 {

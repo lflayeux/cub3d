@@ -6,7 +6,7 @@
 /*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 12:01:56 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/29 15:05:21 by lflayeux         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:32:56 by lflayeux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ void	digital_differential_analysis(t_render_3d *render, t_map *map);
 // =============================
 
 void	init_player(t_game *game);
+void	boundaries(t_texture *texture, int *x, int *y);
 
 #endif

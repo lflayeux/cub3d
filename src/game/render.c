@@ -6,80 +6,57 @@
 /*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:50:21 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/29 15:52:21 by lflayeux         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:45:54 by lflayeux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	boundaries(t_texture *texture, int *x, int *y)
+void	init_print_wall_line(t_game *game, t_render_3d *_3d, t_wall_line *wall)
 {
-	if (*x < 0)
-		*x = 0;
-	if (*x >= texture->width)
-		*x = texture->width - 1;
-	if (*y < 0)
-		*y = 0;
-	if (*y >= texture->height)
-		*y = texture->height - 1;
+	if (_3d->side == 0)
+		wall->wall_x = game->player.pos_y + _3d->perp_wall_dist
+			* _3d->ray_dir_y;
+	else
+		wall->wall_x = game->player.pos_x + _3d->perp_wall_dist
+			* _3d->ray_dir_x;
+	wall->wall_x -= floor(wall->wall_x);
+	wall->tex_x = (int)(wall->wall_x * (float)_3d->texture->width);
+	wall->step = (float)_3d->texture->height / (float)_3d->line_height;
+	wall->tex_pos = 0;
+	wall->y = _3d->draw_start;
+	if (_3d->line_height > HEIGHT)
+		wall->tex_pos = ((_3d->line_height - HEIGHT) / 2.0) * wall->step;
 }
 
-void	print_wall_line(t_game *game, t_render_3d *render, int x)
+void	print_wall_line(t_game *game, t_render_3d *_3d, int x)
 {
 	t_texture	*texture;
-    int 		color;
-	float		step;
-	int			tex_x;
-	int			tex_y;
-	int			y;
-	float		tex_pos;
-	float		wall_x;
+	t_wall_line	wall;
 
-	texture  = render->texture;
-	if (render->side == 0)
-		wall_x = game->player.pos_y + render->perp_wall_dist * render->ray_dir_y;
-
-	else
-		wall_x = game->player.pos_x + render->perp_wall_dist * render->ray_dir_x;
-	wall_x -= floor(wall_x); 
-	tex_x = (int)(wall_x * (float)texture->width);
-
-	step = (float)texture->height / (float)render->line_height;
-	tex_pos = 0;
-	y = render->draw_start;
-	if (render->line_height > HEIGHT)
-		tex_pos = ((render->line_height - HEIGHT)/2.0) * step;
-	while(y < render->draw_end)
+	texture = _3d->texture;
+	ft_memset(&wall, 0, sizeof(t_wall_line));
+	init_print_wall_line(game, _3d, &wall);
+	while (wall.y < _3d->draw_end)
 	{
-		tex_y = (int)tex_pos;
-		boundaries(texture, &tex_x, &tex_y);
-		color = *(unsigned int * )(texture->addr + (tex_y * texture->line_length + tex_x * (texture->bits_per_pixel / 8)));
-		my_mlx_pixel_put(game->mlx.img, x, y, color);
-		tex_pos += step;
-		y++;
+		wall.tex_y = (int)wall.tex_pos;
+		boundaries(texture, &wall.tex_x, &wall.tex_y);
+		wall.color = *(unsigned int *)(texture->addr
+				+ (wall.tex_y * texture->line_length + wall.tex_x
+					* (texture->bits_per_pixel / 8)));
+		my_mlx_pixel_put(game->mlx.img, x, wall.y, wall.color);
+		wall.tex_pos += wall.step;
+		wall.y++;
 	}
 }
 
 void	draw_vertical_line(t_game *game, t_render_3d *render, int x)
 {
-	int y;
-	int m;
-	
 	int	y;
 
 	y = 0;
-	if ((x % 2) == 0)
-		m = 0;
-	else
-		m = 10;
-    while (y < render->draw_start - 1)
 	while (y < render->draw_start - 1)
 	{
-		if ((m % 20) == 0)
-			my_mlx_pixel_put(game->mlx.img, x, y, 0x000000);
-		else
-			my_mlx_pixel_put(game->mlx.img, x, y, game->textures.ceiling_color);
-		m++;
 		my_mlx_pixel_put(game->mlx.img, x, y, game->textures.ceiling_color);
 		y++;
 	}
