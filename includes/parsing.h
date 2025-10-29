@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lflayeux <lflayeux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frene <frene@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 18:43:16 by pandemonium       #+#    #+#             */
-/*   Updated: 2025/10/29 15:07:05 by lflayeux         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:22:58 by frene            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,19 @@ bool		is_coma_ok(char *line);
 bool		is_size_ok(char *line, int index);
 bool		is_letter_ok(char *line);
 int			skipspace(char *line, int i);
+int			skip_to_colors(char *line);
+int			validate_color_format(char *line);
+void		assign_ceiling_color(t_col_text *col_text, int *temp_colors);
+void		assign_floor_color(t_col_text *col_text, int *temp_colors);
+int			validate_color_value(int code);
+
+// =============================
+// ====== TEXTURE UTILS ========
+// =============================
+
+
+
+
 
 // =============================
 // ========== TEXTURES =========
